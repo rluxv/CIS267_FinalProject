@@ -16,7 +16,10 @@ public class CombatManager : MonoBehaviour
 
     [SerializeField] private TMP_Text playerHealthTMP;
     [SerializeField] private TMP_Text enemyHealthTMP;
-
+    [SerializeField] private GameObject PlayerActionsMenu;
+    [SerializeField] private GameObject ItemsMenu;
+    private Animator PlayerActionsMenuAnimator;
+    private Animator ItemsMenuAnimator;
     void Start()
     {
         //for testing purposes, player health and enemy health will be passed to the scene later on
@@ -29,6 +32,11 @@ public class CombatManager : MonoBehaviour
 
         isPlayerTurn = true;
         canPlayerAttack = true;
+        //PlayerActionsMenu.SetActive(true);
+        PlayerActionsMenuAnimator = PlayerActionsMenu.GetComponent<Animator>();
+        ItemsMenuAnimator = ItemsMenu.GetComponent<Animator>();
+        
+        PlayerActionsMenuAnimator.SetBool("canPlayerAttack", true);
 
         updateHealthBars();
     }
@@ -62,12 +70,33 @@ public class CombatManager : MonoBehaviour
             Debug.Log("Attack Button (A) Pressed");
             if (isPlayerTurn && canPlayerAttack)
             {
+                if (ItemsMenu.active)
+                {
+                    ItemsMenuAnimator.SetTrigger("FadeOut");
+                    Invoke("hideItemsMenu", (float)0.6);
+                }
                 playerAttackEnemy();
             }
         }
         else if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("YButton")) //Y Button on joystick
         {
             Debug.Log("Item Button (Y) Pressed");
+            if(isPlayerTurn && canPlayerAttack)
+            {
+                if (!ItemsMenu.active)
+                {
+                    ItemsMenu.SetActive(true);
+                }
+                else
+                {
+                    ItemsMenuAnimator.SetTrigger("FadeOut");
+                    Invoke("hideItemsMenu", (float)0.6);
+                }
+            }    
+            
+            
+            
+             
         }
         else if(Input.GetButtonDown("XButton"))
         {
@@ -81,9 +110,15 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    private void hideItemsMenu()
+    {
+        ItemsMenu.SetActive(false);
+    }
     private void playerAttackEnemy()
     {
+        //PlayerActionsMenu.SetActive(false);
         canPlayerAttack = false;
+        PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
         // do attack & animations
 
         int damage = Random.Range(1, 4);
@@ -118,6 +153,8 @@ public class CombatManager : MonoBehaviour
         {
             isPlayerTurn = true;
             canPlayerAttack = true;
+            PlayerActionsMenuAnimator.SetBool("canPlayerAttack", true);
+            //PlayerActionsMenu.SetActive(true);
         }
 
     }
@@ -128,6 +165,7 @@ public class CombatManager : MonoBehaviour
         {
             Debug.Log("Enemy Defeated");
             enemyHealth = 0;
+            updateHealthBars();
             return true;
         }
         else return false;
@@ -139,6 +177,7 @@ public class CombatManager : MonoBehaviour
         {
             Debug.Log("Player Defeated");
             playerHealth = 0;
+            updateHealthBars();
             return true;
         }
         else return false;

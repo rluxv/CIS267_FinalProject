@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,6 +13,10 @@ public class CombatManager : MonoBehaviour
     private bool canPlayerAttack;
     private int playerHealth, playerHealthMax;
     private int enemyHealth, enemyHealthMax;
+
+    [SerializeField] private TMP_Text playerHealthTMP;
+    [SerializeField] private TMP_Text enemyHealthTMP;
+
     void Start()
     {
         //for testing purposes, player health and enemy health will be passed to the scene later on
@@ -22,6 +29,8 @@ public class CombatManager : MonoBehaviour
 
         isPlayerTurn = true;
         canPlayerAttack = true;
+
+        updateHealthBars();
     }
 
     // Update is called once per frame
@@ -29,21 +38,46 @@ public class CombatManager : MonoBehaviour
     {
         getInput();
     }
+    
+    private void updateHealthBars()
+    {
+        playerHealthTMP.SetText(playerHealth + "/" + playerHealthMax);
+        enemyHealthTMP.SetText(enemyHealth + "/" + enemyHealthMax);
+
+        if (isPlayerHealthLow())
+        {
+            playerHealthTMP.color = Color.red;
+        }
+        if (isEnemyHealthLow())
+        {
+            enemyHealthTMP.color = Color.red;
+        }
+    }
 
     private void getInput()
     {
         // we will also need to use Input.GetButtonDown for joystick controls
-        if (Input.GetKeyDown(KeyCode.A)) //A Button on joystick
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("AButton")) //A Button on joystick
         {
-            Debug.Log("Attack Button Pressed");
+            Debug.Log("Attack Button (A) Pressed");
             if (isPlayerTurn && canPlayerAttack)
             {
                 playerAttackEnemy();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Y)) //Y Button on joystick
+        else if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("YButton")) //Y Button on joystick
         {
-            Debug.Log("Item Button Pressed");
+            Debug.Log("Item Button (Y) Pressed");
+        }
+        else if(Input.GetButtonDown("XButton"))
+        {
+            Debug.Log("X Button Pressed");
+
+        }
+        else if (Input.GetButtonDown("BButton"))
+        {
+            Debug.Log("B Button Pressed");
+
         }
     }
 
@@ -54,13 +88,16 @@ public class CombatManager : MonoBehaviour
 
         int damage = Random.Range(1, 4);
         enemyHealth -= damage;
-        //This prevents health from going below 0 or above the max
-        Mathf.Clamp(enemyHealth, 0, enemyHealthMax);
         Debug.Log("Enemy Health: " + enemyHealth + "/" + enemyHealthMax);
+        updateHealthBars();
 
         isPlayerTurn = false;
 
-        if(!isEnemyDead()) doEnemyTurn();
+        //Add a delay to make it seem like the enemy is "thinking"
+        if (!isEnemyDead())
+        {
+            Invoke("doEnemyTurn", 2);
+        }
 
     }
 
@@ -69,11 +106,13 @@ public class CombatManager : MonoBehaviour
         // do enemy attack
         // this will be a lot more complex too as the enemy will be able to do different moves
         //
+
+        
+
         int damage = Random.Range(1, 4);
         playerHealth -= damage;
-        //This prevents health from going below 0 or above the max
-        Mathf.Clamp(playerHealth, 0, playerHealthMax);
         Debug.Log("Player Health: " + playerHealth + "/" + playerHealthMax);
+        updateHealthBars();
 
         if (!isPlayerDead())
         {
@@ -88,6 +127,7 @@ public class CombatManager : MonoBehaviour
         if (enemyHealth <= 0)
         {
             Debug.Log("Enemy Defeated");
+            enemyHealth = 0;
             return true;
         }
         else return false;
@@ -98,9 +138,35 @@ public class CombatManager : MonoBehaviour
         if (playerHealth <= 0)
         {
             Debug.Log("Player Defeated");
+            playerHealth = 0;
             return true;
         }
         else return false;
     }
 
+    private bool isPlayerHealthLow()
+    {
+        double percent = (double)playerHealth / (double) playerHealthMax;
+        if(percent <= .20)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private bool isEnemyHealthLow()
+    {
+        double percent = (double) enemyHealth / (double) enemyHealthMax;
+        if (percent <= .20)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

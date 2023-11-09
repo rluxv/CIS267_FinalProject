@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class TestScript : MonoBehaviour
+{
+    // Start is called before the first frame update
+    public int testInt;
+    void Start()
+    {
+        testInt = 3;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void switchToCombatScene()
+    {
+        SceneManager.LoadScene("CombatScene");
+    }
+}

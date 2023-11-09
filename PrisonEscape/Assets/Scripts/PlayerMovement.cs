@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         move();
-        setGmPlayerPositions();
+        
     }
 
     private void move()
@@ -27,12 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
         player.velocity = new Vector2(movementSpeed * inputHorizontal, movementSpeed * inputVertical); ;
 
-
-    }
-
-    private void setGmPlayerPositions()
-    {
         GameManager.setPlayerPosX(transform.position.x);
         GameManager.setPlayerPosY(transform.position.y);
     }
+
+    
 }

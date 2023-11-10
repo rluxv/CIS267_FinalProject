@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class CombatManager : MonoBehaviour
@@ -20,11 +21,14 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject ItemsMenu;
     private Animator PlayerActionsMenuAnimator;
     private Animator ItemsMenuAnimator;
+    private PlayerManager playerManager;
     void Start()
     {
+
+        playerManager = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
         //for testing purposes, player health and enemy health will be passed to the scene later on
-        playerHealth = 20;
-        playerHealthMax = 20;
+        playerHealth = playerManager.playerHealth;
+        playerHealthMax = playerManager.playerHealthMax;
 
         enemyHealth = 20;
         enemyHealthMax = 20;
@@ -166,6 +170,10 @@ public class CombatManager : MonoBehaviour
             Debug.Log("Enemy Defeated");
             enemyHealth = 0;
             updateHealthBars();
+
+            // proof of concept keeping health between scenes
+            playerManager.playerHealth = playerHealth;
+            SceneManager.LoadScene("SampleScene");
             return true;
         }
         else return false;

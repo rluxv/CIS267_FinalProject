@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PrisonerDialogue : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class PrisonerDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(inRange);
+        //Debug.Log(inRange);
         showButtonPrompt();
         dialogue();
     }
@@ -58,7 +59,6 @@ public class PrisonerDialogue : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inRange = true;
-
         }
         
     }

@@ -59,6 +59,7 @@ public class PrisonerDialogue : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inRange = true;
+            SceneManager.LoadScene("CombatScene");
         }
         
     }

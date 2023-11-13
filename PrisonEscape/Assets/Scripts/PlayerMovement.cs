@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
-        Debug.Log(inputVertical);
+        //Debug.Log(inputHorizontal + " " + inputVertical);   
         player.velocity = new Vector2(movementSpeed * inputHorizontal, movementSpeed * inputVertical); ;
 
         GameManager.setPlayerPosX(transform.position.x);

@@ -50,8 +50,8 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(inputHorizontal + " " + inputVertical);   
         player.velocity = new Vector2(movementSpeed * inputHorizontal, movementSpeed * inputVertical); ;
 
-        GameManager.setPlayerPosX(transform.position.x);
-        GameManager.setPlayerPosY(transform.position.y);
+        PlayerPos.setPlayerPosX(transform.position.x);
+        PlayerPos.setPlayerPosY(transform.position.y);
 
         
     }

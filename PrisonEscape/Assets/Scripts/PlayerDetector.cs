@@ -9,24 +9,17 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using System.Linq;
 
-public class PrisonerDialogue : MonoBehaviour
+public class PlayerDetector : MonoBehaviour
 {
     public GameObject prompt;
 
-    public TMP_Text text;
-    public string[] lines;
-    
-    public float detectionRange;
-    public float promptOffset;
+
     private bool inRange;
     private bool promptShown;
-    private bool isTalking;
+    
     // Start is called before the first frame update
     void Start()
-    {
-        isTalking = false;
-        
-        transform.localScale = new Vector2(detectionRange, detectionRange);
+    {                 
         inRange = false;
         promptShown = false;
     }
@@ -34,26 +27,12 @@ public class PrisonerDialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(inRange);
+      
         showButtonPrompt();
-        dialogue();
-    }
-
-    private void dialogue()
-    {
-        if (promptShown && Input.GetKeyDown(KeyCode.A) || promptShown && Input.GetButtonDown("BButton"))
-        {
-            isTalking = true;
-            
-            text.text = lines[0]; ;
-        }
         
-        if (isTalking)
-        {
-            Time.timeScale = 0f;
-        }
-
     }
+
+   
 
     private void showButtonPrompt()
     {
@@ -87,5 +66,14 @@ public class PrisonerDialogue : MonoBehaviour
             inRange = false;
         }
     }
+
+    //getters 
+
+    public bool playerInRange()
+    {
+        return inRange;
+    }
+
+   
 }
 

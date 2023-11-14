@@ -25,12 +25,22 @@ public class PlayerMovement : MonoBehaviour
     }
     private void playerAnimate()
     {
-       if(inputVertical == 1)
+        if(inputHorizontal != 0 || inputVertical != 0) 
+        {
+            animator.SetBool("Moving", true);
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
+
+        //up and down
+       if(inputVertical > 0)
         {
             animator.SetBool("MovingUp", true);
             animator.SetBool("MovingDown", false);
         }
-        else if(inputVertical == -1) 
+        else if(inputVertical <0) 
         { 
             animator.SetBool("MovingDown", true);
             animator.SetBool("MovingUp", false);
@@ -40,11 +50,29 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("MovingUp", false);
             animator.SetBool("MovingDown", false);
         }
+
+        //left and right
+        if (inputHorizontal > 0)
+        {
+            animator.SetBool("MovingRight", true);
+            animator.SetBool("MovingLeft", false);
+        }
+        else if (inputHorizontal <0)
+        {
+            animator.SetBool("MovingLeft", true);
+            animator.SetBool("MovingRight", false);
+        }
+        else
+        {
+            animator.SetBool("MovingRight", false);
+            animator.SetBool("MovingLeft", false);
+        }
     }
     
        
     private void move()
     {
+        
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
         //Debug.Log(inputHorizontal + " " + inputVertical);   

@@ -12,8 +12,8 @@ using System.Linq;
 public class PlayerDetector : MonoBehaviour
 {
     public GameObject prompt;
-
-
+    
+    public TMP_Text text;
     private bool inRange;
     private bool promptShown;
     
@@ -22,6 +22,8 @@ public class PlayerDetector : MonoBehaviour
     {                 
         inRange = false;
         promptShown = false;
+        
+       
     }
 
     // Update is called once per frame
@@ -54,6 +56,8 @@ public class PlayerDetector : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inRange = true;
+            
+            
             //SceneManager.LoadScene("CombatScene");
         }
         
@@ -64,6 +68,8 @@ public class PlayerDetector : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             inRange = false;
+            text.text = "";
+
         }
     }
 

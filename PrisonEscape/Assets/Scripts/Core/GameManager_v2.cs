@@ -66,6 +66,12 @@ public class GameManager_v2 : MonoBehaviour
             position = Config.DEFAULT_POSITION,
             playerHealth = Config.DEFAULT_ENTITY_HEALTH
         };
+
+        // Save the game and generate a new save id.
+        string saveId = GameSave.SaveGame(gameSave);
+
+        // Set the new saveId.
+        gameSave.saveId = saveId;
     }
 
     public PlayerManager GetPlayer()

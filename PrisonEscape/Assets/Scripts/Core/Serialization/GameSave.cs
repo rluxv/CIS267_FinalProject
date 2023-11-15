@@ -8,14 +8,10 @@ public static class GameSave
 {
     private static string SAVE_DIRECTORY = Application.persistentDataPath + "/";
 
-    public static void SaveGame(GameSave_Template save)
+    public static string SaveGame(GameSave_Template save)
     {
         // Generate a GUID for the each save.
         System.Guid saveId = System.Guid.NewGuid();
-
-        // Utility for helping save the filer.
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(SAVE_DIRECTORY + saveId + ".db", FileMode.Create);
 
         // The save is a new save without an id.
         if (save.saveId == null)
@@ -24,6 +20,10 @@ public static class GameSave
             save.saveId = saveId.ToString();
         }
 
+        // Utility for helping save the filer.
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(SAVE_DIRECTORY + save.saveId + ".db", FileMode.Create);
+
         // Convert the game save template to a json string.
         string json = JsonUtility.ToJson(save);
 
@@ -31,6 +31,8 @@ public static class GameSave
         formatter.Serialize(stream, json);
 
         stream.Close();
+
+        return saveId.ToString();
     }
 
     /**

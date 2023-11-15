@@ -47,9 +47,6 @@ public class MainMenu : MonoBehaviour
 
         // Ask game manager to load the game from the new save.
         gameManager.OnGameLoad();
-
-        // Save the new game.
-        GameSave.SaveGame(gameManager.GetSave());
     }
 
     public void quitGame()

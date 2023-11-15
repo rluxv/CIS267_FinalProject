@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     private int textAnimPos;
 
     private bool saveMenuOpen;
-
+    List<GameSave_Template> gameSaves;
     AudioSource audioData;
     public void Start()
     {
@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
         saveMenuOpen = false;
         audioData = GetComponent<AudioSource>();
         ArrowTextTMP = ArrowText.GetComponent<TMP_Text>();
+        gameSaves = GameSave.GetGameSaves();
     }
     public void loadGame(int saveFileNum)
     {
@@ -67,6 +68,8 @@ public class MainMenu : MonoBehaviour
         saveMenuOpen = true;
         selected = 0;
         ArrowText.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 100, 0);
+        
+        Debug.Log("Game Save Size: " + gameSaves.Count);
     }
 
     public void openMainMenu()
@@ -100,6 +103,31 @@ public class MainMenu : MonoBehaviour
 
     private void input(bool ctrlPress)
     {
+        if (saveMenuOpen)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("BButton"))
+            {
+                openMainMenu();
+                playAudio();
+            }
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("AButton"))
+            {
+                if (selected >= 0 && selected < 4)
+                {
+                    playAudio();
+                    GameManager_v2 gameManager = DontDestroyOnLoadObj.GetComponent<KeepOnLoad>().getGameManager();
+
+                    gameManager.SetSave(gameSaves[selected].saveId);
+                    DontDestroyOnLoadObj.SetActive(true);
+
+                    SceneManager.LoadScene(gameSaves[selected].level);
+
+                    gameManager.OnGameLoad();
+
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.S) || (ctrlPress && Input.GetAxis("Vertical") == -1))
         {
             if (selected == 0)
@@ -188,15 +216,6 @@ public class MainMenu : MonoBehaviour
             else if (selected == 2)
             {
                 quitGame();
-            }
-        }
-
-        if (saveMenuOpen)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("BButton"))
-            {
-                openMainMenu();
-                playAudio();
             }
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,40 +6,49 @@ using UnityEngine.SceneManagement;
 
 public class GameManager_v2 : MonoBehaviour
 {
-    GameSave_Template gameSave;
+    private GameSave_Template gameSave;
+
+    // Player Varibles
+    [SerializeField]
+    private GameObject o_player;
+    private PlayerManager player;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Get the player manager from the player object.
+        player = o_player.GetComponent<PlayerManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     /**
      * This function will be called when the users wants
-     * to start playing the game. When this is invoked would be determined by
-     * our flow.
+     * to start playing the game. Mounts the player from the selected game
+     * save.
+     * 
+     * Invoked By: Main_Menu.newGame()
      */
-    public void onGameLoad()
+    public void OnGameLoad()
     {
         if (gameSave != null)
         {
             // Setup from game save
-
-            /* Example */
-            if (gameSave.level == 1)
-            {
-                SceneManager.LoadScene("Level1");
-            }
+            SceneManager.LoadScene(gameSave.level);
+            // Set player position.
+            player.obj.transform.position = gameSave.position;
+            // Set the players health.
+            player.SetHealth(gameSave.playerHealth);
         }
         else
         {
-            // Setup like fresh game
-            SceneManager.LoadScene("Level1");
+            // Create new game save.
+            this.OnCreateNewSave();
+            // Recall this function
+            OnGameLoad();
         }
     }
 
@@ -47,8 +57,24 @@ public class GameManager_v2 : MonoBehaviour
      * simply call this and it will create a new
      * save template.
      */
-    public void onCreateNewSave()
+    public void OnCreateNewSave()
     {
-        gameSave = new GameSave_Template();
+        gameSave = new GameSave_Template
+        {
+            // Set default game save information.
+            level = Config.DEFAULT_SAVE_LEVEL,
+            position = Config.DEFAULT_POSITION,
+            playerHealth = Config.DEFAULT_ENTITY_HEALTH
+        };
+    }
+
+    public PlayerManager GetPlayer()
+    {
+        return player;
+    }
+
+    public GameSave_Template GetSave()
+    {
+        return gameSave;
     }
 }

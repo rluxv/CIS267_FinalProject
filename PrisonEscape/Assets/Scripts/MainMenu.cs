@@ -35,8 +35,21 @@ public class MainMenu : MonoBehaviour
 
     public void newGame()
     {
+        GameManager_v2 gameManager = DontDestroyOnLoadObj.GetComponent<KeepOnLoad>().getGameManager();
+
+        // Create a new game save through the game manager/
+        gameManager.OnCreateNewSave();
+
         DontDestroyOnLoadObj.SetActive(true);
-        SceneManager.LoadScene("Level1");
+
+        // Switch the scene to the default level.
+        SceneManager.LoadScene(Config.LEVEL_1);
+
+        // Ask game manager to load the game from the new save.
+        gameManager.OnGameLoad();
+
+        // Save the new game.
+        GameSave.SaveGame(gameManager.GetSave());
     }
 
     public void quitGame()

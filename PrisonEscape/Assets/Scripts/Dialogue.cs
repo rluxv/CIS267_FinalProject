@@ -28,7 +28,7 @@ public class Dialogue : MonoBehaviour
     private void dialogue()
     {
         
-        if (detector.playerInRange() && Input.GetKeyDown(KeyCode.Space) || detector.playerInRange() && Input.GetButtonDown("BButton"))
+        if (detector.playerInRange() && Input.GetKeyDown(KeyCode.Space) || detector.playerInRange() && Input.GetButtonDown("AButton"))
         {
             screen.text = text[pos];
             pos++;

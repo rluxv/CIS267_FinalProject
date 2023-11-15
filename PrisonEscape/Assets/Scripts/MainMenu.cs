@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject ArrowText;
     [SerializeField] private GameObject MainMenuButtons;
     [SerializeField] private GameObject LoadMenuButtons;
+    [SerializeField] private GameObject DontDestroyOnLoadObj;
     private TMP_Text ArrowTextTMP;
     private int selected;
     private bool ctrlrHold;
@@ -19,14 +20,22 @@ public class MainMenu : MonoBehaviour
     AudioSource audioData;
     public void Start()
     {
+        DontDestroyOnLoadObj.SetActive(false);
         selected = 0;
         ctrlrHold = false;
         saveMenuOpen = false;
         audioData = GetComponent<AudioSource>();
         ArrowTextTMP = ArrowText.GetComponent<TMP_Text>();
     }
-    public void startGame()
+    public void loadGame(int saveFileNum)
     {
+        //DontDestroyOnLoadObj.SetActive(true);
+        //SceneManager.LoadScene("Level1");
+    }
+
+    public void newGame()
+    {
+        DontDestroyOnLoadObj.SetActive(true);
         SceneManager.LoadScene("Level1");
     }
 
@@ -160,7 +169,7 @@ public class MainMenu : MonoBehaviour
             // 0 = start game 1 = show save menu 2 = quit
             if (selected == 0)
             {
-                startGame();
+                newGame();
             }
             else if (selected == 1)
             {

@@ -1,4 +1,9 @@
-CIS267_FinalProject
+# CIS267_FinalProject
+## Authors
+- Nick
+- Evean
+- Ben
+- Jacob
 
 ## Documentation
 

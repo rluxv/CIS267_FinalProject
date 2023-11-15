@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     // Entity base provides the plaeyr with basic entity properties
-    private EntityBase entity;
+    public EntityBase entity;
     public GameObject obj;
 
     // Set the players inventory.
@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        entity = GetComponent<EntityBase>();
+        //entity = GetComponent<EntityBase>();
         obj = this.gameObject;
         inventory = new Inventory();
        
@@ -25,7 +25,10 @@ public class PlayerManager : MonoBehaviour
     {
         
     }
-
+    public void test()
+    {
+        Debug.Log("test");
+    }
     public void SetHealth(float health)
     {
         entity.SetEntityHealth(health);

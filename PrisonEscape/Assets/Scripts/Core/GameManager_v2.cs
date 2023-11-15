@@ -52,7 +52,7 @@ public class GameManager_v2 : MonoBehaviour
             // Set player position.
             player.obj.transform.position = gameSave.position;
             // Set the players health.
-            //player.SetHealth(gameSave.playerHealth);
+            player.SetHealth(gameSave.playerHealth);
         }
         else
         {

@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        entity = new EntityBase(Config.DEFAULT_ENTITY_HEALTH);
+        entity = GetComponent<EntityBase>();
         obj = this.gameObject;
         inventory = new Inventory();
        

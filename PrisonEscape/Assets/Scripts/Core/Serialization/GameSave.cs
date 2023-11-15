@@ -67,6 +67,9 @@ public static class GameSave
 
     public static GameSave_Template getGameSave(string guid)
     {
-        return new GameSave_Template();
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream fs = new FileStream(SAVE_DIRECTORY + guid + ".db", FileMode.Open);
+        string decryptedFile = formatter.Deserialize(fs).ToString();
+        return JsonUtility.FromJson<GameSave_Template>(decryptedFile);
     }
 }

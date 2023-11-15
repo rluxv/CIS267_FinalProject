@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityBase
+public class EntityBase : MonoBehaviour
 {
     private float entityHealth;
     private float entityMaxHealth;
 
-    public EntityBase(float health, float maxHealth = 100)
+    void Start()
     {
-        entityHealth = health;
-        entityMaxHealth = maxHealth;
+        entityHealth = Config.DEFAULT_ENTITY_HEALTH;
+        entityMaxHealth = Config.DEFAULT_ENTITY_HEALTH;
     }
 
     public void SetEntityHealth(float health)

@@ -93,4 +93,9 @@ public class GameManager_v2 : MonoBehaviour
     {
         return gameSave;
     }
+
+    public void SetSave(string guid)
+    {
+        gameSave = GameSave.getGameSave(guid);
+    }
 }

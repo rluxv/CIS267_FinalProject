@@ -12,4 +12,5 @@ public class GameSave_Template
     public string level;
     public Vector3 position;
     public float playerHealth;
+    public Inventory playerInventory;
 }

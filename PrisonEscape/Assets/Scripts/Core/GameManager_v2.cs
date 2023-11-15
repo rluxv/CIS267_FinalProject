@@ -11,6 +11,7 @@ public class GameManager_v2 : MonoBehaviour
     // Player Varibles
     [SerializeField]
     private GameObject o_player;
+
     private PlayerManager player;
 
     // Start is called before the first frame update
@@ -34,6 +35,16 @@ public class GameManager_v2 : MonoBehaviour
      */
     public void OnGameLoad()
     {
+        foreach (GameSave_Template save in GameSave.GetGameSaves())
+        {
+            Debug.Log(JsonUtility.ToJson(save));
+        }
+
+        if (player == null)
+        {
+            return;
+        }
+
         if (gameSave != null)
         {
             // Setup from game save
@@ -41,7 +52,7 @@ public class GameManager_v2 : MonoBehaviour
             // Set player position.
             player.obj.transform.position = gameSave.position;
             // Set the players health.
-            player.SetHealth(gameSave.playerHealth);
+            //player.SetHealth(gameSave.playerHealth);
         }
         else
         {
@@ -59,13 +70,12 @@ public class GameManager_v2 : MonoBehaviour
      */
     public void OnCreateNewSave()
     {
-        gameSave = new GameSave_Template
-        {
-            // Set default game save information.
-            level = Config.DEFAULT_SAVE_LEVEL,
-            position = Config.DEFAULT_POSITION,
-            playerHealth = Config.DEFAULT_ENTITY_HEALTH
-        };
+        gameSave = new GameSave_Template();
+
+        gameSave.level = Config.DEFAULT_SAVE_LEVEL;
+        gameSave.position = Config.DEFAULT_POSITION;
+        gameSave.playerHealth = Config.DEFAULT_ENTITY_HEALTH;
+        gameSave.playerInventory = new Inventory();
 
         // Save the game and generate a new save id.
         string saveId = GameSave.SaveGame(gameSave);

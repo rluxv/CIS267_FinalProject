@@ -58,6 +58,8 @@ public static class GameSave
             string decryptedFile = formatter.Deserialize(fs).ToString();
 
             saves.Add(JsonUtility.FromJson<GameSave_Template>(decryptedFile));
+
+            fs.Close();
         }
 
         return saves;

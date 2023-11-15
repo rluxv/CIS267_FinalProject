@@ -8,11 +8,15 @@ public class PlayerManager : MonoBehaviour
     private EntityBase entity;
     public GameObject obj;
 
+    // Set the players inventory.
+    private Inventory inventory;
+
     // Start is called before the first frame update
     void Start()
     {
         entity = new EntityBase(Config.DEFAULT_ENTITY_HEALTH);
         obj = this.gameObject;
+        inventory = new Inventory();
        
     }
 
@@ -24,7 +28,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SetHealth(float health)
     {
-         entity.SetEntityHealth(health);
+        entity.SetEntityHealth(health);
     }
 
     public float GetHealth()

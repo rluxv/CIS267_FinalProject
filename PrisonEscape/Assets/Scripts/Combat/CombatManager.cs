@@ -27,8 +27,8 @@ public class CombatManager : MonoBehaviour
 
         playerManager = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
         //for testing purposes, player health and enemy health will be passed to the scene later on
-        playerHealth = playerManager.playerHealth;
-        playerHealthMax = playerManager.playerHealthMax;
+        //playerHealth = playerManager.playerHealth;
+        //playerHealthMax = playerManager.playerHealthMax;
 
         enemyHealth = 20;
         enemyHealthMax = 20;
@@ -172,7 +172,7 @@ public class CombatManager : MonoBehaviour
             updateHealthBars();
 
             // proof of concept keeping health between scenes
-            playerManager.playerHealth = playerHealth;
+            //playerManager.playerHealth = playerHealth;
             SceneManager.LoadScene("SampleScene");
             return true;
         }

@@ -38,4 +38,14 @@ public class PlayerManager : MonoBehaviour
     {
         return entity.GetEntityHealth();
     }
+
+    public float GetMaxHealth()
+    {
+        return entity.GetEntityMaxHealth();
+    }
+
+    public void SetMaxHealth(float maxhealth)
+    {
+        entity.SetEntityMaxHealth(maxhealth);
+    }
 }

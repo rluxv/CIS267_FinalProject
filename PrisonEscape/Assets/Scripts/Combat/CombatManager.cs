@@ -21,16 +21,22 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject ItemsMenu;
     private Animator PlayerActionsMenuAnimator;
     private Animator ItemsMenuAnimator;
-    private PlayerManager playerManager;
+    private GameManager_v2 GameManager;
+    private GameObject GameManagerObj;
+    private GameObject DontDestroyOnLoadObj;
     void Start()
     {
 
-        playerManager = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManager_v2>();
+        GameManagerObj = GameObject.Find("GameManager");
+        DontDestroyOnLoadObj = GameObject.Find("DontDestroyOnLoad");
         //for testing purposes, player health and enemy health will be passed to the scene later on
         //playerHealth = playerManager.playerHealth;
         //playerHealthMax = playerManager.playerHealthMax;
+        playerHealth = (int) GameManager.GetPlayer().GetHealth();
+        playerHealthMax = (int)GameManager.GetPlayer().GetMaxHealth();
 
-        enemyHealth = 20;
+        enemyHealth = 5;
         enemyHealthMax = 20;
 
 
@@ -43,6 +49,7 @@ public class CombatManager : MonoBehaviour
         PlayerActionsMenuAnimator.SetBool("canPlayerAttack", true);
 
         updateHealthBars();
+        DontDestroyOnLoadObj.SetActive(false);
     }
 
     // Update is called once per frame
@@ -173,10 +180,18 @@ public class CombatManager : MonoBehaviour
 
             // proof of concept keeping health between scenes
             //playerManager.playerHealth = playerHealth;
-            SceneManager.LoadScene("SampleScene");
+            endBattle();
             return true;
         }
         else return false;
+    }
+
+    public void endBattle()
+    {
+        DontDestroyOnLoadObj.SetActive(true);
+        GameManager.GetPlayer().SetHealth(playerHealth);
+        //We will change this to the scene the player was previously in
+        SceneManager.LoadScene(GameManager_v2.PreviousScene);
     }
 
     private bool isPlayerDead()

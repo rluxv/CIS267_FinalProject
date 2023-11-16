@@ -27,6 +27,12 @@ public class LevelLoader : MonoBehaviour
                 case "Level3Loader":
                     switchScenes("Level3");
                     break;
+                case "CombatLoader":
+                    if(GameManager_v2.PreviousScene != "CombatScene")
+                    {
+                        switchScenes("CombatScene");
+                    }
+                    break;
             }
         }
     }

@@ -14,6 +14,8 @@ public class GameManager_v2 : MonoBehaviour
 
     private PlayerManager player;
 
+    public static string PreviousScene { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {

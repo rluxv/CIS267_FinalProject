@@ -22,4 +22,14 @@ public class EntityBase : MonoBehaviour
     {
         return entityHealth;
     }
+
+    public float GetEntityMaxHealth()
+    {
+        return entityMaxHealth;
+    }
+
+    public void SetEntityMaxHealth(float maxhealth)
+    {
+        entityMaxHealth = maxhealth;
+    }
 }

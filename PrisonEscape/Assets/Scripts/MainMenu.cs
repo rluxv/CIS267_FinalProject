@@ -119,9 +119,6 @@ public class MainMenu : MonoBehaviour
 
                     gameManager.SetSave(gameSaves[selected].saveId);
                     DontDestroyOnLoadObj.SetActive(true);
-
-                    SceneManager.LoadScene(gameSaves[selected].level);
-
                     gameManager.OnGameLoad();
 
                 }

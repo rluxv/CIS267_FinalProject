@@ -110,7 +110,7 @@ public class MainMenu : MonoBehaviour
                 openMainMenu();
                 playAudio();
             }
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("AButton"))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("AButton"))
             {
                 if (selected >= 0 && selected < 4)
                 {

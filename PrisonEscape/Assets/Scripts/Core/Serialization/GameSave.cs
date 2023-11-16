@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public static class GameSave
 {
-    private static string SAVE_DIRECTORY = Application.persistentDataPath + "/";
-
+    //private static string SAVE_DIRECTORY = Application.persistentDataPath + "/";
+    private static string SAVE_DIRECTORY = Path.Combine(Application.persistentDataPath, "save/");
     public static string SaveGame(GameSave_Template save)
     {
+        if (!Directory.Exists(SAVE_DIRECTORY))
+        {
+            Directory.CreateDirectory(SAVE_DIRECTORY);
+        }    
+            
         // Generate a GUID for the each save.
         System.Guid saveId = System.Guid.NewGuid();
 
@@ -41,6 +47,10 @@ public static class GameSave
      */
     public static List<GameSave_Template> GetGameSaves()
     {
+        if (!Directory.Exists(SAVE_DIRECTORY))
+        {
+            Directory.CreateDirectory(SAVE_DIRECTORY);
+        }
         List<GameSave_Template> saves = new List<GameSave_Template>();
 
         // File steam helpers
@@ -61,15 +71,20 @@ public static class GameSave
 
             fs.Close();
         }
-
         return saves;
     }
 
     public static GameSave_Template getGameSave(string guid)
     {
+        if (!Directory.Exists(SAVE_DIRECTORY))
+        {
+            Directory.CreateDirectory(SAVE_DIRECTORY);
+        }
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream fs = new FileStream(SAVE_DIRECTORY + guid + ".db", FileMode.Open);
         string decryptedFile = formatter.Deserialize(fs).ToString();
+        fs.Close();
         return JsonUtility.FromJson<GameSave_Template>(decryptedFile);
+
     }
 }

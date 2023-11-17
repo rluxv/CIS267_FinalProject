@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class VendorScript : MonoBehaviour
@@ -10,10 +11,18 @@ public class VendorScript : MonoBehaviour
     [SerializeField] private GameObject buyMenu;
     private bool playerInRange;
     private bool menuOpen;
+
+    [SerializeField] private TMP_Text Item1Text, Item2Text, Item3Text, BalanceText;
+    [SerializeField] private GameObject ArrowText;
+
+    private int selected;
+    private bool ctrlrHold;
     void Start()
     {
         playerInRange = false;
         menuOpen = false;
+        selected = 0;
+        ctrlrHold = false;
     }
 
     // Update is called once per frame
@@ -21,7 +30,28 @@ public class VendorScript : MonoBehaviour
     {
         if(playerInRange)
         {
-            getInput();
+            getInput(false);
+            controllerInput();
+        }
+    }
+
+    private void controllerInput()
+    {
+        if (Input.GetAxis("Vertical") == 1 || Input.GetAxis("Vertical") == -1)
+        {
+            if (ctrlrHold == true)
+            {
+                // do nothing
+            }
+            else
+            {
+                getInput(true);
+                ctrlrHold = true;
+            }
+        }
+        else
+        {
+            ctrlrHold = false;
         }
     }
 
@@ -45,7 +75,7 @@ public class VendorScript : MonoBehaviour
         }
     }
 
-    private void getInput()
+    private void getInput(bool ctrlPress)
     {
         if(!menuOpen && Input.GetButtonDown("AButton"))
         {
@@ -60,6 +90,43 @@ public class VendorScript : MonoBehaviour
             Time.timeScale = 1f;
             buyMenu.SetActive(false);
             buttonPrompt.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.S) || (ctrlPress && Input.GetAxis("Vertical") == -1) && menuOpen)
+        {
+            if(selected == 0)
+            {
+                selected = 1;
+                ArrowText.GetComponent<RectTransform>().anchoredPosition = Item2Text.GetComponent<RectTransform>().anchoredPosition;
+            }
+            else if(selected == 1)
+            {
+                selected = 2;
+                ArrowText.GetComponent<RectTransform>().anchoredPosition = Item3Text.GetComponent<RectTransform>().anchoredPosition;
+            }
+            else if(selected == 2)
+            {
+                selected = 0;
+                ArrowText.GetComponent<RectTransform>().anchoredPosition = Item1Text.GetComponent<RectTransform>().anchoredPosition;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.W) || (ctrlPress && Input.GetAxis("Vertical") == 1) && menuOpen)
+        {
+            if (selected == 0)
+            {
+                selected = 2;
+                ArrowText.GetComponent<RectTransform>().anchoredPosition = Item3Text.GetComponent<RectTransform>().anchoredPosition;
+            }
+            else if(selected == 1)
+            {
+                selected = 0;
+                ArrowText.GetComponent<RectTransform>().anchoredPosition = Item1Text.GetComponent<RectTransform>().anchoredPosition;
+            }
+            else if (selected == 2)
+            {
+                selected = 1;
+                ArrowText.GetComponent<RectTransform>().anchoredPosition = Item2Text.GetComponent<RectTransform>().anchoredPosition;
+            }
         }
     }
 }

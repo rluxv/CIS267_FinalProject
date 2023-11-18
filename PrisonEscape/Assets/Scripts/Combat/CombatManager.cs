@@ -19,14 +19,16 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private TMP_Text enemyHealthTMP;
     [SerializeField] private GameObject PlayerActionsMenu;
     [SerializeField] private GameObject ItemsMenu;
+    [SerializeField] private GameObject CombatEndMenu;
     private Animator PlayerActionsMenuAnimator;
     private Animator ItemsMenuAnimator;
     private GameManager_v2 GameManager;
     private GameObject GameManagerObj;
     private GameObject DontDestroyOnLoadObj;
+    private bool combatEndMenuOpen;
     void Start()
     {
-
+        combatEndMenuOpen = false;
         GameManager = GameObject.Find("GameManager").GetComponent<GameManager_v2>();
         GameManagerObj = GameObject.Find("GameManager");
         DontDestroyOnLoadObj = GameObject.Find("DontDestroyOnLoad");
@@ -75,49 +77,60 @@ public class CombatManager : MonoBehaviour
 
     private void getInput()
     {
-        // we will also need to use Input.GetButtonDown for joystick controls
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("AButton")) //A Button on joystick
+
+        if(combatEndMenuOpen)
         {
-            Debug.Log("Attack Button (A) Pressed");
-            if (isPlayerTurn && canPlayerAttack)
+            if(Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Return))
             {
-                if (ItemsMenu.active)
-                {
-                    ItemsMenuAnimator.SetTrigger("FadeOut");
-                    Invoke("hideItemsMenu", (float)0.6);
-                }
-                playerAttackEnemy();
+                endBattle();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("YButton")) //Y Button on joystick
-        {
-            Debug.Log("Item Button (Y) Pressed");
-            if(isPlayerTurn && canPlayerAttack)
+        else
+        { 
+            // we will also need to use Input.GetButtonDown for joystick controls
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("AButton")) //A Button on joystick
             {
-                if (!ItemsMenu.active)
+                Debug.Log("Attack Button (A) Pressed");
+                if (isPlayerTurn && canPlayerAttack)
                 {
-                    ItemsMenu.SetActive(true);
+                    if (ItemsMenu.active)
+                    {
+                        ItemsMenuAnimator.SetTrigger("FadeOut");
+                        Invoke("hideItemsMenu", (float)0.6);
+                    }
+                    playerAttackEnemy();
                 }
-                else
+            }
+            else if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("YButton")) //Y Button on joystick
+            {
+                Debug.Log("Item Button (Y) Pressed");
+                if(isPlayerTurn && canPlayerAttack)
                 {
-                    ItemsMenuAnimator.SetTrigger("FadeOut");
-                    Invoke("hideItemsMenu", (float)0.6);
-                }
-            }    
+                    if (!ItemsMenu.active)
+                    {
+                        ItemsMenu.SetActive(true);
+                    }
+                    else
+                    {
+                        ItemsMenuAnimator.SetTrigger("FadeOut");
+                        Invoke("hideItemsMenu", (float)0.6);
+                    }
+                }    
             
             
             
              
-        }
-        else if(Input.GetButtonDown("XButton"))
-        {
-            Debug.Log("X Button Pressed");
+            }
+            else if(Input.GetButtonDown("XButton"))
+            {
+                Debug.Log("X Button Pressed");
 
-        }
-        else if (Input.GetButtonDown("BButton"))
-        {
-            Debug.Log("B Button Pressed");
+            }
+            else if (Input.GetButtonDown("BButton"))
+            {
+                Debug.Log("B Button Pressed");
 
+            }
         }
     }
 
@@ -180,7 +193,7 @@ public class CombatManager : MonoBehaviour
 
             // proof of concept keeping health between scenes
             //playerManager.playerHealth = playerHealth;
-            endBattle();
+            loadCombatEndMenu();
             return true;
         }
         else return false;
@@ -192,6 +205,13 @@ public class CombatManager : MonoBehaviour
         GameManager.GetPlayer().SetHealth(playerHealth);
         //We will change this to the scene the player was previously in
         SceneManager.LoadScene(GameManager_v2.PreviousScene);
+    }
+
+    public void loadCombatEndMenu()
+    {
+        combatEndMenuOpen = true;
+        CombatEndMenu.SetActive(true);
+        PlayerActionsMenu.SetActive(false);
     }
 
     private bool isPlayerDead()

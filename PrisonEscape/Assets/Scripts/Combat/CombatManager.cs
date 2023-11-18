@@ -17,6 +17,10 @@ public class CombatManager : MonoBehaviour
 
     [SerializeField] private TMP_Text playerHealthTMP;
     [SerializeField] private TMP_Text enemyHealthTMP;
+    [SerializeField] private TMP_Text CoinsEarnedTMP;
+    [SerializeField] private TMP_Text DamageGivenTMP;
+    [SerializeField] private TMP_Text DamageTakenTMP;
+    [SerializeField] private TMP_Text BonusCoinsTMP;
     [SerializeField] private GameObject PlayerActionsMenu;
     [SerializeField] private GameObject ItemsMenu;
     [SerializeField] private GameObject CombatEndMenu;
@@ -26,6 +30,10 @@ public class CombatManager : MonoBehaviour
     private GameObject GameManagerObj;
     private GameObject DontDestroyOnLoadObj;
     private bool combatEndMenuOpen;
+    private int balance;
+    private int coinsEarned;
+    private int damageTaken;
+    private int damageGiven;
     void Start()
     {
         combatEndMenuOpen = false;
@@ -37,6 +45,7 @@ public class CombatManager : MonoBehaviour
         //playerHealthMax = playerManager.playerHealthMax;
         playerHealth = (int) GameManager.GetPlayer().GetHealth();
         playerHealthMax = (int)GameManager.GetPlayer().GetMaxHealth();
+        balance = GameManager.GetPlayer().getBalance();
 
         enemyHealth = 5;
         enemyHealthMax = 20;
@@ -146,6 +155,7 @@ public class CombatManager : MonoBehaviour
         // do attack & animations
 
         int damage = Random.Range(1, 4);
+        damageGiven += damage;
         enemyHealth -= damage;
         Debug.Log("Enemy Health: " + enemyHealth + "/" + enemyHealthMax);
         updateHealthBars();
@@ -169,6 +179,7 @@ public class CombatManager : MonoBehaviour
         
 
         int damage = Random.Range(1, 4);
+        damageTaken += damage;
         playerHealth -= damage;
         Debug.Log("Player Health: " + playerHealth + "/" + playerHealthMax);
         updateHealthBars();
@@ -193,7 +204,8 @@ public class CombatManager : MonoBehaviour
 
             // proof of concept keeping health between scenes
             //playerManager.playerHealth = playerHealth;
-            loadCombatEndMenu();
+            StartCoroutine(loadCombatEndMenu());
+            //loadCombatEndMenu();
             return true;
         }
         else return false;
@@ -203,15 +215,42 @@ public class CombatManager : MonoBehaviour
     {
         DontDestroyOnLoadObj.SetActive(true);
         GameManager.GetPlayer().SetHealth(playerHealth);
+        GameManager.GetPlayer().increaseBalance(coinsEarned);
         //We will change this to the scene the player was previously in
         SceneManager.LoadScene(GameManager_v2.PreviousScene);
     }
 
-    public void loadCombatEndMenu()
+    IEnumerator loadCombatEndMenu()
     {
+        yield return new WaitForSeconds(.450F);
         combatEndMenuOpen = true;
         CombatEndMenu.SetActive(true);
         PlayerActionsMenu.SetActive(false);
+        coinsEarned = Random.Range(2, 6);
+        
+        DamageGivenTMP.SetText("Damage Given: " + damageGiven);
+        DamageTakenTMP.SetText("Damage Taken: " + damageTaken);
+        CoinsEarnedTMP.SetText("Coins Earned: " + coinsEarned);
+
+        yield return new WaitForSeconds(.250F);
+        CoinsEarnedTMP.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(.250F);
+        DamageTakenTMP.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.250F);
+        DamageGivenTMP.gameObject.SetActive(true);
+        if (damageGiven > damageTaken)
+        {
+            // coin bonus if you gave more damage than you took
+            int bonusCoins = Random.Range(3, 5);
+            coinsEarned += 4;
+            yield return new WaitForSeconds(.250F);
+            BonusCoinsTMP.SetText("Coin Bonus: " + bonusCoins);
+            BonusCoinsTMP.gameObject.SetActive(true);
+        }
+        balance += coinsEarned;
+
+
     }
 
     private bool isPlayerDead()

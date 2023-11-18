@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d01e1ef3d098fea4e97b49f83267002a
+guid: c79d4da2e7d52034f9088d628985784c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,12 +136,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CellDoorOpening_0
+      name: CellDoorOpeningTest_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -150,19 +150,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca4b252a0c57da64a8b775697e51c364
-      internalID: -209284375
+      spriteID: 62c90d8917e67524b8d423c0dbd54b1a
+      internalID: 1621754245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_1
+      name: CellDoorOpeningTest_1
       rect:
         serializedVersion: 2
-        x: 220
+        x: 222
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -171,19 +171,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3609f38e00bb800439ee490ee553c4a6
-      internalID: -990973322
+      spriteID: ae5e409ab1eaeb14ab59b7a6dca3d2d8
+      internalID: -1975267746
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_2
+      name: CellDoorOpeningTest_2
       rect:
         serializedVersion: 2
-        x: 440
+        x: 444
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -192,19 +192,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c8582b92d0c7c14995100add435d353
-      internalID: 1844628727
+      spriteID: 9f204f9882bfb1c4cbb09a4efd4a583f
+      internalID: -33128498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_3
+      name: CellDoorOpeningTest_3
       rect:
         serializedVersion: 2
-        x: 660
+        x: 666
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -213,19 +213,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9193bae42ff81d48ab33fc68a633924
-      internalID: 763502402
+      spriteID: 9aa5758eb1b08914495f0f527a62c1ea
+      internalID: -133071075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_4
+      name: CellDoorOpeningTest_4
       rect:
         serializedVersion: 2
-        x: 880
+        x: 888
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -234,19 +234,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e5f8719046f7cf4396a4d06fde1591a
-      internalID: -1275868361
+      spriteID: 655df668b0781984e9afc85142da7b13
+      internalID: -220782169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_5
+      name: CellDoorOpeningTest_5
       rect:
         serializedVersion: 2
-        x: 1100
+        x: 1110
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -255,19 +255,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11d610952d3bc2d40aab6773713fcf58
-      internalID: 329398160
+      spriteID: 0edecaeff6e4ce5449d0e06514268a09
+      internalID: 1868895018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_6
+      name: CellDoorOpeningTest_6
       rect:
         serializedVersion: 2
-        x: 1320
+        x: 1332
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -276,19 +276,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b88028bd36e40845a352c4c4d739225
-      internalID: 1130224436
+      spriteID: 5aca763f4d6cfe3489dbd9ba348c2c96
+      internalID: -722899882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_7
+      name: CellDoorOpeningTest_7
       rect:
         serializedVersion: 2
-        x: 1540
+        x: 1554
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -297,19 +297,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d64e188f5bd00342a96d22e9cd271c2
-      internalID: -2097892438
+      spriteID: 75031bb246514b14eb795fb05c42ab31
+      internalID: 750205980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_8
+      name: CellDoorOpeningTest_8
       rect:
         serializedVersion: 2
-        x: 1760
+        x: 1776
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -318,19 +318,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b4a50c2291d16548be2dce95c605cbc
-      internalID: 64217285
+      spriteID: 45ce27b1f0d301347946f59a30caa868
+      internalID: -1865634309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_9
+      name: CellDoorOpeningTest_9
       rect:
         serializedVersion: 2
-        x: 1980
+        x: 1998
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -339,19 +339,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ed3418a4cdd3ea42892635753e87a39
-      internalID: 714047368
+      spriteID: f2450a4333a41694884aa8194b0d4b13
+      internalID: 1231247756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_10
+      name: CellDoorOpeningTest_10
       rect:
         serializedVersion: 2
-        x: 2200
+        x: 2220
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -360,19 +360,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c6f7f2f0d0bee14d93c270c6eb52d1a
-      internalID: -2002765590
+      spriteID: 969e7419c1e817b40ad18910bcfed344
+      internalID: -178159014
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_11
+      name: CellDoorOpeningTest_11
       rect:
         serializedVersion: 2
-        x: 2420
+        x: 2442
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -381,19 +381,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 826ad9b5373426a4f94965ea14bda78f
-      internalID: 850393569
+      spriteID: 59255b2dec86dfe448cd67c2e5a722a5
+      internalID: -1226229067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_12
+      name: CellDoorOpeningTest_12
       rect:
         serializedVersion: 2
-        x: 2640
+        x: 2664
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -402,19 +402,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dcd7fb84e1cf034797bccde4c002add
-      internalID: -620863597
+      spriteID: 2ce74388175afad4dabe2d8ffa017486
+      internalID: -14095307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_13
+      name: CellDoorOpeningTest_13
       rect:
         serializedVersion: 2
-        x: 2860
+        x: 2886
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -423,19 +423,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b713d0de9a3b6b244ab6b989a468edab
-      internalID: 351832888
+      spriteID: 56dc86908bae5b7418c7a710fb5385bf
+      internalID: -1636847669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_14
+      name: CellDoorOpeningTest_14
       rect:
         serializedVersion: 2
-        x: 3080
+        x: 3108
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -444,19 +444,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbd424660c5740e478f0b50af3a59593
-      internalID: -163593184
+      spriteID: 137cbd67e2843af4181c54ad9d211155
+      internalID: 186209511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_15
+      name: CellDoorOpeningTest_15
       rect:
         serializedVersion: 2
-        x: 3300
+        x: 3330
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -465,19 +465,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 597da2511c88d644bbadedc2ec2db6e9
-      internalID: -902976927
+      spriteID: 90eb08da3336233448d1beb6e3448d6c
+      internalID: 88954940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_16
+      name: CellDoorOpeningTest_16
       rect:
         serializedVersion: 2
-        x: 3520
+        x: 3552
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -486,19 +486,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a02fbb07679ea2648bf836c08f513399
-      internalID: -1926339628
+      spriteID: a9741b76e9b3def4298a72b140fbf732
+      internalID: 731897074
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_17
+      name: CellDoorOpeningTest_17
       rect:
         serializedVersion: 2
-        x: 3740
+        x: 3774
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -507,19 +507,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b66f8876f1f7d994b95ac23a5f1cc326
-      internalID: -1293251622
+      spriteID: 7e838a6539b3bec4493b8e47ba70af69
+      internalID: -1781518649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_18
+      name: CellDoorOpeningTest_18
       rect:
         serializedVersion: 2
-        x: 3960
+        x: 3996
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -528,19 +528,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17e462be9daca8b4ebb0acf5c2480cee
-      internalID: 1332379662
+      spriteID: 65098174a8dc9f848819dd4236460487
+      internalID: -817383745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_19
+      name: CellDoorOpeningTest_19
       rect:
         serializedVersion: 2
-        x: 4180
+        x: 4218
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -549,19 +549,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a8952f9632d7d449ba70eb0475c6464
-      internalID: 1279863396
+      spriteID: d5cc821b5b554244c9bd3ddb4944bae8
+      internalID: 443687700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_20
+      name: CellDoorOpeningTest_20
       rect:
         serializedVersion: 2
-        x: 4400
+        x: 4440
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -570,19 +570,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60f422e48a21fe049baffd4fa6f1aaba
-      internalID: -1794413375
+      spriteID: 426fd2511bc828f42950959159b26286
+      internalID: 288139394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CellDoorOpening_21
+      name: CellDoorOpeningTest_21
       rect:
         serializedVersion: 2
-        x: 4620
+        x: 4662
         y: 0
-        width: 220
+        width: 222
         height: 208
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -591,8 +591,218 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62fafd2697c7cd642973ff2a2b580e32
-      internalID: 893975383
+      spriteID: 487351d80c953ef46894a06752d18a1b
+      internalID: -1879119137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CellDoorOpeningTest_22
+      rect:
+        serializedVersion: 2
+        x: 4884
+        y: 0
+        width: 222
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6affcc7fe045db429112f1ca123fbb0
+      internalID: 1539683606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CellDoorOpeningTest_23
+      rect:
+        serializedVersion: 2
+        x: 5106
+        y: 0
+        width: 222
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5791cb2299d2414984bddaa49964156
+      internalID: 1779309303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CellDoorOpeningTest_24
+      rect:
+        serializedVersion: 2
+        x: 5328
+        y: 0
+        width: 222
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6975f75a5107e8498b774ba9f9a2957
+      internalID: 1934191393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CellDoorOpeningTest_25
+      rect:
+        serializedVersion: 2
+        x: 5550
+        y: 0
+        width: 222
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5f01846dbf744547857f2919ee9c3f8
+      internalID: 365334577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CellDoorOpeningTest_26
+      rect:
+        serializedVersion: 2
+        x: 5772
+        y: 0
+        width: 222
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 412cd004209d5fb48826458f56da2dab
+      internalID: 1815064427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CellDoorOpeningTest_27
+      rect:
+        serializedVersion: 2
+        x: 5994
+        y: 0
+        width: 222
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be529ae91a4aace469e03ca853cb4938
+      internalID: -159182507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CellDoorOpeningTest_28
+      rect:
+        serializedVersion: 2
+        x: 6216
+        y: 0
+        width: 222
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 409b88632a447134a995066136265fe2
+      internalID: 1152488023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CellDoorOpeningTest_29
+      rect:
+        serializedVersion: 2
+        x: 6438
+        y: 0
+        width: 222
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c0f2df24d39df947996fd80a290bf5f
+      internalID: -1401982056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CellDoorOpeningTest_30
+      rect:
+        serializedVersion: 2
+        x: 6660
+        y: 0
+        width: 222
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e1878012e86ddd449e2f1af504300bf
+      internalID: -1462351955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CellDoorOpeningTest_31
+      rect:
+        serializedVersion: 2
+        x: 6882
+        y: 0
+        width: 222
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7888c184c7ed7146a0c2aaa38427221
+      internalID: -1230558768
       vertices: []
       indices: 
       edges: []
@@ -608,28 +818,38 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CellDoorOpening_0: -209284375
-      CellDoorOpening_1: -990973322
-      CellDoorOpening_10: -2002765590
-      CellDoorOpening_11: 850393569
-      CellDoorOpening_12: -620863597
-      CellDoorOpening_13: 351832888
-      CellDoorOpening_14: -163593184
-      CellDoorOpening_15: -902976927
-      CellDoorOpening_16: -1926339628
-      CellDoorOpening_17: -1293251622
-      CellDoorOpening_18: 1332379662
-      CellDoorOpening_19: 1279863396
-      CellDoorOpening_2: 1844628727
-      CellDoorOpening_20: -1794413375
-      CellDoorOpening_21: 893975383
-      CellDoorOpening_3: 763502402
-      CellDoorOpening_4: -1275868361
-      CellDoorOpening_5: 329398160
-      CellDoorOpening_6: 1130224436
-      CellDoorOpening_7: -2097892438
-      CellDoorOpening_8: 64217285
-      CellDoorOpening_9: 714047368
+      CellDoorOpeningTest_0: 1621754245
+      CellDoorOpeningTest_1: -1975267746
+      CellDoorOpeningTest_10: -178159014
+      CellDoorOpeningTest_11: -1226229067
+      CellDoorOpeningTest_12: -14095307
+      CellDoorOpeningTest_13: -1636847669
+      CellDoorOpeningTest_14: 186209511
+      CellDoorOpeningTest_15: 88954940
+      CellDoorOpeningTest_16: 731897074
+      CellDoorOpeningTest_17: -1781518649
+      CellDoorOpeningTest_18: -817383745
+      CellDoorOpeningTest_19: 443687700
+      CellDoorOpeningTest_2: -33128498
+      CellDoorOpeningTest_20: 288139394
+      CellDoorOpeningTest_21: -1879119137
+      CellDoorOpeningTest_22: 1539683606
+      CellDoorOpeningTest_23: 1779309303
+      CellDoorOpeningTest_24: 1934191393
+      CellDoorOpeningTest_25: 365334577
+      CellDoorOpeningTest_26: 1815064427
+      CellDoorOpeningTest_27: -159182507
+      CellDoorOpeningTest_28: 1152488023
+      CellDoorOpeningTest_29: -1401982056
+      CellDoorOpeningTest_3: -133071075
+      CellDoorOpeningTest_30: -1462351955
+      CellDoorOpeningTest_31: -1230558768
+      CellDoorOpeningTest_4: -220782169
+      CellDoorOpeningTest_5: 1868895018
+      CellDoorOpeningTest_6: -722899882
+      CellDoorOpeningTest_7: 750205980
+      CellDoorOpeningTest_8: -1865634309
+      CellDoorOpeningTest_9: 1231247756
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

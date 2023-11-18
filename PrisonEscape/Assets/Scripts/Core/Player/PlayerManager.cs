@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
 
     // Set the players inventory.
     private Inventory inventory;
+    private int balance;
 
     // Start is called before the first frame update
     void Start()
@@ -47,5 +48,25 @@ public class PlayerManager : MonoBehaviour
     public void SetMaxHealth(float maxhealth)
     {
         entity.SetEntityMaxHealth(maxhealth);
+    }
+
+    public int getBalance()
+    {
+        return balance;
+    }
+
+    public void setBalance(int bal)
+    {
+        balance = bal;
+    }
+
+    public void increaseBalance(int amt)
+    {
+        balance += amt;
+    }
+
+    public void decreaseBalance(int amt)
+    {
+        balance -= amt;
     }
 }

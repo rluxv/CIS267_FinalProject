@@ -55,6 +55,7 @@ public class GameManager_v2 : MonoBehaviour
             player.obj.transform.position = gameSave.position;
             // Set the players health.
             player.SetHealth(gameSave.playerHealth);
+            player.setBalance(gameSave.coins);
         }
         else
         {
@@ -78,6 +79,7 @@ public class GameManager_v2 : MonoBehaviour
         gameSave.position = Config.DEFAULT_POSITION;
         gameSave.playerHealth = Config.DEFAULT_ENTITY_HEALTH;
         gameSave.playerInventory = new Inventory();
+        gameSave.coins = Config.STARTING_BALANCE;
 
         // Save the game and generate a new save id.
         string saveId = GameSave.SaveGame(gameSave);

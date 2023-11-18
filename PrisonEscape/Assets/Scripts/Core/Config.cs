@@ -14,4 +14,5 @@ public static class Config
     public const string DEFAULT_SAVE_LEVEL = LEVEL_1;
     public static Vector3 DEFAULT_POSITION = Vector3.zero;
     public const int DEFAULT_INVENTORY_SIZE = 10;
+    public const int STARTING_BALANCE = 5;
 }

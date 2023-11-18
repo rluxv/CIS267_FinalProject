@@ -13,4 +13,5 @@ public class GameSave_Template
     public Vector3 position;
     public float playerHealth;
     public Inventory playerInventory;
+    public int coins;
 }

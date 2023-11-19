@@ -12,6 +12,9 @@ public class PlayerManager : MonoBehaviour
     private Inventory inventory;
     private int balance;
 
+    //  this is so level loaders can access the gameManager + script after colliding with the player
+     public GameObject gameManagerObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,5 +71,10 @@ public class PlayerManager : MonoBehaviour
     public void decreaseBalance(int amt)
     {
         balance -= amt;
+    }
+
+    public GameObject getGameManagerObject()
+    {
+        return gameManagerObject;
     }
 }

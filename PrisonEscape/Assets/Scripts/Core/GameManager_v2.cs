@@ -8,6 +8,10 @@ public class GameManager_v2 : MonoBehaviour
 {
     private GameSave_Template gameSave;
 
+    //  Level Loader
+    private GameObject sceneSpawnPoint;
+    private string levelLoaderTag;
+
     // Player Varibles
     [SerializeField]
     private GameObject o_player;
@@ -53,9 +57,11 @@ public class GameManager_v2 : MonoBehaviour
             SceneManager.LoadScene(gameSave.level);
             // Set player position.
             player.obj.transform.position = gameSave.position;
+
             // Set the players health.
             player.SetHealth(gameSave.playerHealth);
             player.setBalance(gameSave.coins);
+            
         }
         else
         {
@@ -86,6 +92,9 @@ public class GameManager_v2 : MonoBehaviour
 
         // Set the new saveId.
         gameSave.saveId = saveId;
+
+        //  start at the first spawn point
+        levelLoaderTag = "SpawnPoint1";
     }
 
     public PlayerManager GetPlayer()
@@ -102,4 +111,64 @@ public class GameManager_v2 : MonoBehaviour
     {
         gameSave = GameSave.getGameSave(guid);
     }
+
+    //  Adds a listener for when the scene changes
+    private void OnEnable()
+    {
+        //Debug.Log("OnEnable Called");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    //  removes the listener for when the scene changes (on game termination)
+    private void OnDisable()
+    {
+        //Debug.Log("OnDisable");
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    
+    //  Lets the Loader set our levelLoaderTag
+    public void setLevelLoaderTag(string tag)
+    {
+        levelLoaderTag = tag;
+    }
+
+    //  When a scene changes, This function is called
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+
+        
+        //  Check if this is the first scene load
+        if (levelLoaderTag == null)
+        {
+            levelLoaderTag = "SpawnPoint1";
+            
+        }
+        Debug.Log("levelLoaderTag");
+
+
+        if (levelLoaderTag != "")
+        {
+            //  find spawn point based on "levelLoaderTag" from the level loader that sent you
+            sceneSpawnPoint = GameObject.FindGameObjectWithTag(levelLoaderTag);
+            //  move player to the designated spawn point
+            o_player.transform.position = sceneSpawnPoint.transform.position;
+        }
+       
+
+        //  reset for next time
+        levelLoaderTag = "";
+
+
+
+        //  Update PlayerPosition
+        PlayerPos.setPlayerPosX(transform.position.x);
+        PlayerPos.setPlayerPosY(transform.position.y);
+
+    }
+
+
+
+
+
+
 }

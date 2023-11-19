@@ -16,6 +16,8 @@ public class LevelLoader : MonoBehaviour
         Debug.Log(transform.gameObject.tag + " Collided with: " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Player"))
         {
+            if (transform.gameObject.name == "SpawnPoint1" || transform.gameObject.name == "SpawnPoint2")
+            collision.GetComponent<PlayerManager>().getGameManagerObject().GetComponent<GameManager_v2>().setLevelLoaderTag(transform.gameObject.name);
             switch (transform.gameObject.tag)
             {
                 case "Level1Loader":

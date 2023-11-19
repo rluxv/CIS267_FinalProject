@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed;
     private float inputHorizontal, inputVertical;
     private Animator animator;
+
     
     // Start is called before the first frame update
     void Start()

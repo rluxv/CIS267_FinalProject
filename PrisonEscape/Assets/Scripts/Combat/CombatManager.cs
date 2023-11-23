@@ -24,6 +24,8 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject PlayerActionsMenu;
     [SerializeField] private GameObject ItemsMenu;
     [SerializeField] private GameObject CombatEndMenu;
+    [SerializeField] private TMP_Text[] ItemsTMP;
+    [SerializeField] private TMP_Text ItemSelectorTMP;
     private Animator PlayerActionsMenuAnimator;
     private Animator ItemsMenuAnimator;
     private GameManager_v2 GameManager;
@@ -34,12 +36,22 @@ public class CombatManager : MonoBehaviour
     private int coinsEarned;
     private int damageTaken;
     private int damageGiven;
+    private bool itemsMenuOpen;
+    private bool ctrlrHold;
+    private int selected;
+    Inventory inventory;
     void Start()
     {
+        ctrlrHold = false;
         combatEndMenuOpen = false;
+        itemsMenuOpen = false;
         GameManager = GameObject.Find("GameManager").GetComponent<GameManager_v2>();
         GameManagerObj = GameObject.Find("GameManager");
         DontDestroyOnLoadObj = GameObject.Find("DontDestroyOnLoad");
+        // get inventory here, code below temporary
+        Inventory inventory = new Inventory();
+
+
         //for testing purposes, player health and enemy health will be passed to the scene later on
         //playerHealth = playerManager.playerHealth;
         //playerHealthMax = playerManager.playerHealthMax;
@@ -67,6 +79,11 @@ public class CombatManager : MonoBehaviour
     void Update()
     {
         getInput();
+        if (itemsMenuOpen)
+        { 
+            getItemsMenuInput(false);
+            getItemsMenuControllerAxisInput();
+        }
     }
     
     private void updateHealthBars()
@@ -84,68 +101,118 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    private void getInput()
+    private void getItemsMenuInput(bool ctrlPress)
     {
-
-        if(combatEndMenuOpen)
+        if(itemsMenuOpen)
         {
-            if(Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetButtonDown("BButton"))
             {
-                endBattle();
+                ItemsMenuAnimator.SetTrigger("FadeOut");
+                Invoke("hideItemsMenu", (float)0.4);
+            }
+            if (Input.GetButtonDown("AButton"))
+            {
+
+            }
+            if (Input.GetKeyDown(KeyCode.S) || (ctrlPress && Input.GetAxis("Vertical") == -1))
+            {
+                if(selected < 9)
+                {
+                    selected++;
+                    ItemSelectorTMP.GetComponent<RectTransform>().anchoredPosition = ItemsTMP[selected].GetComponent<RectTransform>().anchoredPosition;
+                }
+                else if(selected == 9)
+                {
+                    selected = 0;
+                    ItemSelectorTMP.GetComponent<RectTransform>().anchoredPosition = ItemsTMP[selected].GetComponent<RectTransform>().anchoredPosition;
+                }
+               
+            }
+            else if (Input.GetKeyDown(KeyCode.W) || (ctrlPress && Input.GetAxis("Vertical") == 1))
+            {
+                if (selected > 0)
+                {
+                    selected--;
+                    ItemSelectorTMP.GetComponent<RectTransform>().anchoredPosition = ItemsTMP[selected].GetComponent<RectTransform>().anchoredPosition;
+                }
+                else if (selected == 0)
+                {
+                    selected = 9;
+                    ItemSelectorTMP.GetComponent<RectTransform>().anchoredPosition = ItemsTMP[selected].GetComponent<RectTransform>().anchoredPosition;
+                }
+            }
+        } 
+    }
+
+    private void getItemsMenuControllerAxisInput()
+    {
+        if (Input.GetAxis("Vertical") == 1 || Input.GetAxis("Vertical") == -1)
+        {
+            if (ctrlrHold == true)
+            {
+                // do nothing
+            }
+            else
+            {
+                getItemsMenuInput(true);
+                ctrlrHold = true;
             }
         }
         else
-        { 
-            // we will also need to use Input.GetButtonDown for joystick controls
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("AButton")) //A Button on joystick
+        {
+            ctrlrHold = false;
+        }
+    }    
+
+    private void getInput()
+    {
+        if(!itemsMenuOpen)
+        {
+            if (combatEndMenuOpen)
             {
-                Debug.Log("Attack Button (A) Pressed");
-                if (isPlayerTurn && canPlayerAttack)
+                if (Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Return))
                 {
-                    if (ItemsMenu.active)
-                    {
-                        ItemsMenuAnimator.SetTrigger("FadeOut");
-                        Invoke("hideItemsMenu", (float)0.6);
-                    }
-                    playerAttackEnemy();
+                    endBattle();
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("YButton")) //Y Button on joystick
+            else
             {
-                Debug.Log("Item Button (Y) Pressed");
-                if(isPlayerTurn && canPlayerAttack)
+                // we will also need to use Input.GetButtonDown for joystick controls
+                if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("AButton")) //A Button on joystick
                 {
-                    if (!ItemsMenu.active)
+                    Debug.Log("Attack Button (A) Pressed");
+                    if (isPlayerTurn && canPlayerAttack)
                     {
-                        ItemsMenu.SetActive(true);
+                        playerAttackEnemy();
                     }
-                    else
+                }
+                else if (Input.GetKeyDown(KeyCode.Y) || Input.GetButtonDown("YButton")) //Y Button on joystick
+                {
+                    if (isPlayerTurn && canPlayerAttack)
                     {
-                        ItemsMenuAnimator.SetTrigger("FadeOut");
-                        Invoke("hideItemsMenu", (float)0.6);
+                            ItemsMenu.SetActive(true);
+                            itemsMenuOpen = true;
                     }
-                }    
-            
-            
-            
-             
-            }
-            else if(Input.GetButtonDown("XButton"))
-            {
-                Debug.Log("X Button Pressed");
+                }
+                else if (Input.GetButtonDown("XButton"))
+                {
+                    Debug.Log("X Button Pressed");
 
-            }
-            else if (Input.GetButtonDown("BButton"))
-            {
-                Debug.Log("B Button Pressed");
+                }
+                else if (Input.GetButtonDown("BButton"))
+                {
+                    Debug.Log("B Button Pressed");
 
+                }
             }
         }
+        
     }
 
     private void hideItemsMenu()
     {
         ItemsMenu.SetActive(false);
+        itemsMenuOpen = false;
     }
     private void playerAttackEnemy()
     {

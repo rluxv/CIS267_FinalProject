@@ -4,31 +4,72 @@ using UnityEngine;
 
 public class GuardMovement : MonoBehaviour
 {
-    int pos;
-    public Vector2[] positions;
+
+    private Rigidbody2D rb;
+    private bool active;
+    public float MovementSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        pos = 0;
+        rb = GetComponent<Rigidbody2D>();
+        active = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        verticalMovement();
+        if(active)
+        {
+            verticalMovement();
+            HorizontalMovement();
+        }
+        restart();
     }
 
+    private void HorizontalMovement()
+    {
+        if (PlayerPos.getPlayerPosX() > transform.position.x)
+        {
+            rb.velocity = new Vector2(MovementSpeed, rb.velocity.y);
+
+        }
+        if (PlayerPos.getPlayerPosX() < transform.position.x)
+        {
+            rb.velocity = new Vector2(-MovementSpeed, rb.velocity.y);
+
+        }
+    }
     private void verticalMovement()
     {
+        if (PlayerPos.getPlayerPosY() > transform.position.y)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, MovementSpeed);
+
+        }else if (PlayerPos.getPlayerPosY() < transform.position.y)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -MovementSpeed);
+        }
         
-            transform.position = Vector2.MoveTowards(transform.position, positions[pos], 2 * Time.deltaTime);
-        if(transform.position.y == positions[pos].y)
-        {
-            pos++;
+        
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player")){
+
+            Debug.Log("Collision");
+            active = false;
+            rb.velocity = Vector2.zero;
         }
-        if(pos == positions.Length)
+    }
+
+    private void restart()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            pos = 0;
+            active = true;
         }
+        
     }
 }

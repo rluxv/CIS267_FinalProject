@@ -48,7 +48,7 @@ public class Dialogue : MonoBehaviour
             inputVertical = Input.GetAxisRaw("Vertical");
         }
 
-        Debug.Log(inputVertical);
+       
     }
 
     private void choice()
@@ -94,6 +94,6 @@ public class Dialogue : MonoBehaviour
             highlight.transform.position = new Vector2(highlight.transform.position.x, highlight.transform.position.y - offset);
             timer = 1;
         }
-        Debug.Log(timer);
+        //Debug.Log(timer);
     }
 }

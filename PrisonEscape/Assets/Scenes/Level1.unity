@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (11)
+      value: CellDoor (11)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -174,63 +174,6 @@ PrefabInstance:
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
---- !u!1001 &17895462
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1142752696}
-    m_Modifications:
-    - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-      propertyPath: m_Name
-      value: CellDoorOpening_0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 12.310002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 11.059999
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1909,7 +1852,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (13)
+      value: CellDoor (13)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2336,7 +2279,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (5)
+      value: CellDoor (5)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2852,7 +2795,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (7)
+      value: CellDoor (7)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3547,7 +3490,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (1)
+      value: CellDoor (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5159,7 +5102,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (12)
+      value: CellDoor (12)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34142,7 +34085,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (8)
+      value: CellDoor (8)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34829,7 +34772,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (14)
+      value: CellDoor (14)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34886,7 +34829,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (9)
+      value: CellDoor (9)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35003,7 +34946,7 @@ Transform:
   - {fileID: 493361971}
   - {fileID: 631317722}
   - {fileID: 1894285082}
-  - {fileID: 1982639502}
+  - {fileID: 1747669961}
   - {fileID: 829158759}
   - {fileID: 136935162}
   - {fileID: 28362442}
@@ -43696,7 +43639,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (3)
+      value: CellDoor (3)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45093,7 +45036,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (15)
+      value: CellDoor (15)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45155,7 +45098,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (10)
+      value: CellDoor (10)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45212,7 +45155,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (4)
+      value: CellDoor (4)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -45259,6 +45202,68 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+--- !u!1001 &1747669960
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1142752696}
+    m_Modifications:
+    - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+      propertyPath: m_Name
+      value: CellDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.350002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+--- !u!4 &1747669961 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
+  m_PrefabInstance: {fileID: 1747669960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1753378041
 GameObject:
   m_ObjectHideFlags: 0
@@ -46070,7 +46075,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (6)
+      value: CellDoor (6)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -46078,7 +46083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -22.91
+      value: -23
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -46086,23 +46091,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0868754
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.9962192
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 9.968
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -46110,7 +46115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46391,7 +46396,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (16)
+      value: CellDoor (16)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -46448,7 +46453,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031497362808886645, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_Name
-      value: CellDoorOpening_0 (2)
+      value: CellDoor (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47137,11 +47142,6 @@ CanvasRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
   m_PrefabInstance: {fileID: 1008301070}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1982639502 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5188443709749965205, guid: 94298bf02f764b045969ba2c0d18991e, type: 3}
-  m_PrefabInstance: {fileID: 17895462}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2056435991
 GameObject:

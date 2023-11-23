@@ -108,6 +108,8 @@ public class CombatManager : MonoBehaviour
             if (Input.GetButtonDown("BButton"))
             {
                 ItemsMenuAnimator.SetTrigger("FadeOut");
+                selected = 0;
+                ItemSelectorTMP.GetComponent<RectTransform>().anchoredPosition = ItemsTMP[selected].GetComponent<RectTransform>().anchoredPosition;
                 Invoke("hideItemsMenu", (float)0.4);
             }
             if (Input.GetButtonDown("AButton"))

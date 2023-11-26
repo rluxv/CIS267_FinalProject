@@ -51,7 +51,13 @@ public class CombatManager : MonoBehaviour
         GameManagerObj = GameObject.Find("GameManager");
         DontDestroyOnLoadObj = GameObject.Find("DontDestroyOnLoad");
         // get inventory here, code below temporary
-        Inventory inventory = new Inventory();
+        Inventory inventory = GameManager.GetPlayer().getInventory();
+
+        for(int i = 0; i <= 10; i++)
+        {
+            inventory.AddItem(new InventoryItem("ITEM.CONSUMABLE.WATER"));
+            //Debug.Log(inventory.GetItem(i).GetType() + " Inv");
+        }
 
 
         //for testing purposes, player health and enemy health will be passed to the scene later on

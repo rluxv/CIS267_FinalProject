@@ -61,7 +61,7 @@ public class GameManager_v2 : MonoBehaviour
             // Set the players health.
             player.SetHealth(gameSave.playerHealth);
             player.setBalance(gameSave.coins);
-            
+            player.setInventory(gameSave.playerInventory);
         }
         else
         {

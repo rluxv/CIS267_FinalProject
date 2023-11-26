@@ -107,8 +107,8 @@ public class CombatManager : MonoBehaviour
         {
             try
             {
-                Debug.Log("Item " + i + " :" + inventory.GetItem(i).name);
-                ItemsTMP[i].SetText(inventory.GetItem(i).name);
+                //Debug.Log("Item " + i + " :" + inventory.GetItem(i).name);
+                //ItemsTMP[i].SetText(inventory.GetItem(i).name);
             }
             catch (System.Exception e)
             {
@@ -147,13 +147,13 @@ public class CombatManager : MonoBehaviour
             }
             if (Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Return))
             {
-                if(inventory.GetItem(selected).itemId == Config.ITEM_WATER)
-                {
-                    Debug.Log("Used a water.");
-                    inventory.GetItem(selected).Use();
-                    updateItemsMenuList();
+                //if(inventory.GetItem(selected).itemId == Config.ITEM_WATER)
+                //{
+                //    Debug.Log("Used a water.");
+                //    inventory.GetItem(selected).Use();
+                //    updateItemsMenuList();
                     //Invoke("hideItemsMenu", (float)0.4);
-                }
+                //}
             }
             if (Input.GetKeyDown(KeyCode.S) || (ctrlPress && Input.GetAxis("Vertical") == -1))
             {

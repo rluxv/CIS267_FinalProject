@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed;
     private float inputHorizontal, inputVertical;
     private Animator animator;
+    
 
     
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     {
         player = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        PlayerPos.CanMove(true);
     }
 
     // Update is called once per frame
@@ -73,14 +75,18 @@ public class PlayerMovement : MonoBehaviour
        
     private void move()
     {
-        
-        inputHorizontal = Input.GetAxisRaw("Horizontal");
-        inputVertical = Input.GetAxisRaw("Vertical");
-        //Debug.Log(inputHorizontal + " " + inputVertical);   
-        player.velocity = new Vector2(movementSpeed * inputHorizontal, movementSpeed * inputVertical); ;
+        if (PlayerPos.CanMove())
+        {
+            inputHorizontal = Input.GetAxisRaw("Horizontal");
+            inputVertical = Input.GetAxisRaw("Vertical");
+            //Debug.Log(inputHorizontal + " " + inputVertical);   
+            player.velocity = new Vector2(movementSpeed * inputHorizontal, movementSpeed * inputVertical); ;
 
-        PlayerPos.setPlayerPosX(transform.position.x);
-        PlayerPos.setPlayerPosY(transform.position.y);
+            PlayerPos.setPlayerPosX(transform.position.x);
+            PlayerPos.setPlayerPosY(transform.position.y);
+            PlayerPos.setPlayerPos(transform.position);
+        }
+        
 
         
     }

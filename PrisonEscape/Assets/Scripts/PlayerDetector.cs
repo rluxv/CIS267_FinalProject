@@ -12,7 +12,7 @@ using System.Linq;
 public class PlayerDetector : MonoBehaviour
 {
     public GameObject prompt;
-    
+    public GameObject highlight;
     public TMP_Text text;
     private bool inRange;
     private bool promptShown;
@@ -69,7 +69,7 @@ public class PlayerDetector : MonoBehaviour
         {
             inRange = false;
             text.text = "";
-
+            highlight.SetActive(false);
         }
     }
 
@@ -79,7 +79,10 @@ public class PlayerDetector : MonoBehaviour
     {
         return inRange;
     }
-
+    public bool PromptShown()
+    {
+        return promptShown;
+    }
    
 }
 

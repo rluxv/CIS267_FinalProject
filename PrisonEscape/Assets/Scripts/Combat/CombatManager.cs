@@ -40,6 +40,8 @@ public class CombatManager : MonoBehaviour
     private bool ctrlrHold;
     private int selected;
     Inventory inventory;
+    private int enemyItemsLeft;
+    private int enemyAttackItemsLeft;
     void Start()
     {
         ctrlrHold = false;
@@ -59,8 +61,12 @@ public class CombatManager : MonoBehaviour
         playerHealthMax = (int)GameManager.GetPlayer().GetMaxHealth();
         balance = GameManager.GetPlayer().getBalance();
 
-        enemyHealth = 5;
+        enemyHealth = 20;
         enemyHealthMax = 20;
+
+        //give the enemy 3 items
+        enemyItemsLeft = 3;
+        enemyAttackItemsLeft = 3;
 
 
         isPlayerTurn = true;
@@ -244,15 +250,60 @@ public class CombatManager : MonoBehaviour
         // do enemy attack
         // this will be a lot more complex too as the enemy will be able to do different moves
         //
+        if(enemyHealth / enemyHealthMax <= .2 && enemyItemsLeft != 0) // if enemy health is low and we have a healing item, prioritize healing
+        {
+            // use a health item
+            enemyItemsLeft--;
+            int healAmt = Random.Range(enemyHealth * 2, enemyHealthMax);
+            enemyHealth = healAmt;
+        }
+        else if(playerHealth / playerHealthMax <= .2) // if player health is low prioritize attacking
+        {
+            int damage = Random.Range(1, 4);
+            damageTaken += damage;
+            playerHealth -= damage;
+        }
+        else
+        {
+            // make a random decision
+            int decisionToMake = Random.Range(1, 4);
 
-        
-
-        int damage = Random.Range(1, 4);
-        damageTaken += damage;
-        playerHealth -= damage;
-        Debug.Log("Player Health: " + playerHealth + "/" + playerHealthMax);
+            if(decisionToMake == 1) //1 = use health item
+            {
+                if(enemyItemsLeft != 0)
+                {
+                    // use a health item
+                    enemyItemsLeft--;
+                    int healAmt = Random.Range(1, enemyHealthMax);
+                    enemyHealth = healAmt;
+                }
+                else
+                {
+                    decisionToMake = Random.Range(2, 4);
+                }
+            }
+            if(decisionToMake == 2) // 2 = use attack item (stronger damage)
+            {
+                if(enemyAttackItemsLeft != 0)
+                {
+                    enemyAttackItemsLeft--;
+                    int damage = Random.Range(4, 9);
+                    damageTaken += damage;
+                    playerHealth -= damage;
+                }
+                else
+                {
+                    decisionToMake = 3;
+                }
+            }
+            if(decisionToMake == 3) // 3 = attack
+            {
+                int damage = Random.Range(1, 4);
+                damageTaken += damage;
+                playerHealth -= damage;
+            }
+        }
         updateHealthBars();
-
         if (!isPlayerDead())
         {
             isPlayerTurn = true;

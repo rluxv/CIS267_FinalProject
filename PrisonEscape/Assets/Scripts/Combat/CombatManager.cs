@@ -40,6 +40,8 @@ public class CombatManager : MonoBehaviour
     private bool ctrlrHold;
     private int selected;
     Inventory inventory;
+    private int enemyItemsLeft;
+    private int enemyAttackItemsLeft;
     void Start()
     {
         ctrlrHold = false;
@@ -49,7 +51,16 @@ public class CombatManager : MonoBehaviour
         GameManagerObj = GameObject.Find("GameManager");
         DontDestroyOnLoadObj = GameObject.Find("DontDestroyOnLoad");
         // get inventory here, code below temporary
-        Inventory inventory = new Inventory();
+        inventory = GameManager.GetPlayer().getInventory();
+
+        //Add some items to the inventory for testing
+        for (int i = 0; i < 10; i++)
+        {
+            Water it = new Water();
+            inventory.AddItem(it);
+            //Debug.Log(inventory.GetItem(i).name + " Inv");
+        }
+        updateItemsMenuList();
 
 
         //for testing purposes, player health and enemy health will be passed to the scene later on
@@ -59,8 +70,12 @@ public class CombatManager : MonoBehaviour
         playerHealthMax = (int)GameManager.GetPlayer().GetMaxHealth();
         balance = GameManager.GetPlayer().getBalance();
 
-        enemyHealth = 5;
+        enemyHealth = 20;
         enemyHealthMax = 20;
+
+        //give the enemy 3 items
+        enemyItemsLeft = 3;
+        enemyAttackItemsLeft = 3;
 
 
         isPlayerTurn = true;
@@ -83,6 +98,24 @@ public class CombatManager : MonoBehaviour
         { 
             getItemsMenuInput(false);
             getItemsMenuControllerAxisInput();
+        }
+    }
+
+    public void updateItemsMenuList()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            try
+            {
+                Debug.Log("Item " + i + " :" + inventory.GetItem(i).name);
+                ItemsTMP[i].SetText(inventory.GetItem(i).name);
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log("No Item at " + i);
+                ItemsTMP[i].SetText("<Empty>");
+            }
+
         }
     }
     
@@ -112,9 +145,15 @@ public class CombatManager : MonoBehaviour
                 ItemSelectorTMP.GetComponent<RectTransform>().anchoredPosition = ItemsTMP[selected].GetComponent<RectTransform>().anchoredPosition;
                 Invoke("hideItemsMenu", (float)0.4);
             }
-            if (Input.GetButtonDown("AButton"))
+            if (Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Return))
             {
-
+                if(inventory.GetItem(selected).itemId == Config.ITEM_WATER)
+                {
+                    Debug.Log("Used a water.");
+                    inventory.GetItem(selected).Use();
+                    updateItemsMenuList();
+                    //Invoke("hideItemsMenu", (float)0.4);
+                }
             }
             if (Input.GetKeyDown(KeyCode.S) || (ctrlPress && Input.GetAxis("Vertical") == -1))
             {
@@ -192,8 +231,7 @@ public class CombatManager : MonoBehaviour
                 {
                     if (isPlayerTurn && canPlayerAttack)
                     {
-                            ItemsMenu.SetActive(true);
-                            itemsMenuOpen = true;
+                        loadItemsMenu();
                     }
                 }
                 else if (Input.GetButtonDown("XButton"))
@@ -216,6 +254,13 @@ public class CombatManager : MonoBehaviour
         ItemsMenu.SetActive(false);
         itemsMenuOpen = false;
     }
+
+    public void loadItemsMenu()
+    {
+        ItemsMenu.SetActive(true);
+        itemsMenuOpen = true;
+    }
+
     private void playerAttackEnemy()
     {
         //PlayerActionsMenu.SetActive(false);
@@ -244,15 +289,60 @@ public class CombatManager : MonoBehaviour
         // do enemy attack
         // this will be a lot more complex too as the enemy will be able to do different moves
         //
+        if(enemyHealth / enemyHealthMax <= .2 && enemyItemsLeft != 0) // if enemy health is low and we have a healing item, prioritize healing
+        {
+            // use a health item
+            enemyItemsLeft--;
+            int healAmt = Random.Range(enemyHealth * 2, enemyHealthMax);
+            enemyHealth = healAmt;
+        }
+        else if(playerHealth / playerHealthMax <= .2) // if player health is low prioritize attacking
+        {
+            int damage = Random.Range(1, 4);
+            damageTaken += damage;
+            playerHealth -= damage;
+        }
+        else
+        {
+            // make a random decision
+            int decisionToMake = Random.Range(1, 4);
 
-        
-
-        int damage = Random.Range(1, 4);
-        damageTaken += damage;
-        playerHealth -= damage;
-        Debug.Log("Player Health: " + playerHealth + "/" + playerHealthMax);
+            if(decisionToMake == 1) //1 = use health item
+            {
+                if(enemyItemsLeft != 0)
+                {
+                    // use a health item
+                    enemyItemsLeft--;
+                    int healAmt = Random.Range(1, enemyHealthMax);
+                    enemyHealth = healAmt;
+                }
+                else
+                {
+                    decisionToMake = Random.Range(2, 4);
+                }
+            }
+            if(decisionToMake == 2) // 2 = use attack item (stronger damage)
+            {
+                if(enemyAttackItemsLeft != 0)
+                {
+                    enemyAttackItemsLeft--;
+                    int damage = Random.Range(4, 9);
+                    damageTaken += damage;
+                    playerHealth -= damage;
+                }
+                else
+                {
+                    decisionToMake = 3;
+                }
+            }
+            if(decisionToMake == 3) // 3 = attack
+            {
+                int damage = Random.Range(1, 4);
+                damageTaken += damage;
+                playerHealth -= damage;
+            }
+        }
         updateHealthBars();
-
         if (!isPlayerDead())
         {
             isPlayerTurn = true;
@@ -285,6 +375,7 @@ public class CombatManager : MonoBehaviour
         DontDestroyOnLoadObj.SetActive(true);
         GameManager.GetPlayer().SetHealth(playerHealth);
         GameManager.GetPlayer().increaseBalance(coinsEarned);
+        GameManager.GetPlayer().setInventory(inventory);
         //We will change this to the scene the player was previously in
         SceneManager.LoadScene(GameManager_v2.PreviousScene);
     }

@@ -10,7 +10,7 @@ public class VendorScript : MonoBehaviour
 
     [SerializeField] private GameObject buyMenu;
     private bool playerInRange;
-    private bool menuOpen;
+    public static bool menuOpen;
 
     [SerializeField] private TMP_Text Item1Text, Item2Text, Item3Text, BalanceText;
     [SerializeField] private GameObject ArrowText;
@@ -77,14 +77,14 @@ public class VendorScript : MonoBehaviour
 
     private void getInput(bool ctrlPress)
     {
-        if(!menuOpen && Input.GetButtonDown("AButton"))
+        if(!menuOpen && Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Return))
         {
             menuOpen = true;
             buyMenu.SetActive(true);
             Time.timeScale = 0f;
             buttonPrompt.SetActive(false);
         }
-        if (menuOpen && Input.GetButtonDown("BButton"))
+        if (menuOpen && Input.GetButtonDown("BButton") || Input.GetKeyDown(KeyCode.Escape))
         {
             menuOpen = false;
             Time.timeScale = 1f;

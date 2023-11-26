@@ -77,4 +77,14 @@ public class PlayerManager : MonoBehaviour
     {
         return gameManagerObject;
     }
+
+    public void setInventory(Inventory inv)
+    {
+        inventory = inv;
+    }
+
+    public Inventory getInventory()
+    {
+        return inventory;
+    }    
 }

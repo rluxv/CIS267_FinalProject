@@ -54,7 +54,7 @@ public class PauseMenu : MonoBehaviour
     }
     private void getInput(bool ctrlPress)
     {
-        if(Input.GetButtonDown("StartButton"))
+        if(Input.GetButtonDown("StartButton") || Input.GetKeyDown(KeyCode.Escape) && !VendorScript.menuOpen)
         {
             if(pauseMenuOpen)
             {
@@ -74,13 +74,13 @@ public class PauseMenu : MonoBehaviour
         }
         else if(pauseMenuOpen)
         {
-            if(Input.GetButtonDown("BButton"))
+            if(Input.GetButtonDown("BButton") || Input.GetKeyDown(KeyCode.Escape))
             {
                 pauseMenuOpen = false;
                 PauseMenuObject.SetActive(false);
                 Time.timeScale = 1f;
             }
-            else if (Input.GetButtonDown("AButton"))
+            else if (Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Return))
             {
                 if(selected == 0) // resume game
                 {

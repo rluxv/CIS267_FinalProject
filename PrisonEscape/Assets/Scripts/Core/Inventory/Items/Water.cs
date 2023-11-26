@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+[Serializable]
 class Water : InventoryItem
 {
-  
 
     public Water()
     {
@@ -18,7 +19,7 @@ class Water : InventoryItem
 
     public void Use(PlayerManager player)
     {
-        Debug.Log(player.getBalance());
+        Debug.Log(player.getBalance() + "balance");
 
         // Remove the item from the inventory.
         this.inventory.RemoveItem(this.index, 1);

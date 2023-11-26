@@ -33,6 +33,8 @@ public class Inventory
 
             if (itemIndex != null)
             {
+                if (itemIndex >= items.Count) return;
+
                 // If the item is stackable then we combine the amounts.
                 if ((bool)items[(int)itemIndex].isStackable) 
                 {
@@ -54,7 +56,8 @@ public class Inventory
 
     public void RemoveItem(int index, int? amount)
     {
-        InventoryItem item = GetItem(index);
+        InventoryItem item = GetItem<InventoryItem>(index);
+        if (index >= items.Count) return;
 
         if (item != null && amount != null && amount >= 1)
         {
@@ -93,25 +96,27 @@ public class Inventory
         return null;
     }
 
-    public InventoryItem GetItem(String itemId)
+    public T GetItem<T>(string itemId)
     {
         int? itemIndex = GetItemIndex(new InventoryItem(itemId));
         
         // Item was not found.
         if (itemIndex == null)
         {
-            return null;
+            return default(T);
         }
 
         InventoryItem item = items.ElementAt((int)itemIndex);
-        return item;
+        return JsonUtility.FromJson<T>(JsonUtility.ToJson(item)); ;
 
     }
 
-    public InventoryItem GetItem(int itemIndex)
+    public T GetItem<T>(int itemIndex)
     {
+        if (itemIndex >= items.Count) return default(T);
+
         InventoryItem item = items.ElementAt((int)itemIndex);
-        return item;
+        return JsonUtility.FromJson<T>(JsonUtility.ToJson(item));
 
     }
 }

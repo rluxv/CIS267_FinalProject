@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject obj;
 
     // Set the players inventory.
-    private Inventory inventory;
+    public Inventory inventory;
     private int balance;
 
     //  this is so level loaders can access the gameManager + script after colliding with the player
@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
     public void test()
     {

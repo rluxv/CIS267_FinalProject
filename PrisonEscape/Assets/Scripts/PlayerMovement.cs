@@ -25,7 +25,20 @@ public class PlayerMovement : MonoBehaviour
     {
         move();
         playerAnimate();
+        playerStopCheck();
     }
+
+    private void playerStopCheck()
+    {
+        if(PlayerPos.CanMove() == false)
+        {
+            player.velocity = Vector3.zero;
+            inputVertical = 0;
+            inputVertical = 0;
+            animator.SetBool("Moving", false);
+        }
+    }
+
     private void playerAnimate()
     {
         if(inputHorizontal != 0 || inputVertical != 0) 

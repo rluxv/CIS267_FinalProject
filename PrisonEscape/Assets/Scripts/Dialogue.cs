@@ -25,7 +25,6 @@ public class Dialogue : MonoBehaviour
     public float timer;
     private float Otime;
     static private int choicePos;
-    private Vector2 orignalPos;
     private bool talking;
     
 
@@ -38,6 +37,7 @@ public class Dialogue : MonoBehaviour
         parent = transform.name;
         Otime = timer;
         talking = false;
+       
     }
 
     // Update is called once per frame
@@ -51,19 +51,28 @@ public class Dialogue : MonoBehaviour
        
         if (doesBranch)
         {
+           
             choice();
-            moveHighlight();
             result();
+            moveHighlight();
+            
             inputVertical = Input.GetAxisRaw("Vertical");
         }
 
-        Debug.Log(parent +"has stated: "+ detector.playerInRange());
+        
     }
 
     private void result()
     {
-        if (talking && Input.GetKeyDown(KeyCode.Space) || talking  && Input.GetButtonDown("AButton"))
-       screen.text = parent+choiceResults[choicePos];
+       
+        
+        if (talking && Input.GetKeyDown(KeyCode.Escape) || talking && Input.GetButtonDown("AButton"))
+        {
+            screen.text = parent + choiceResults[choicePos];
+            PlayerPos.CanMove(true);
+            talking = false;
+        }
+       
     }
 
     private void choice()

@@ -15,4 +15,7 @@ public static class Config
     public static Vector3 DEFAULT_POSITION = Vector3.zero;
     public const int DEFAULT_INVENTORY_SIZE = 10;
     public const int STARTING_BALANCE = 5;
+
+    // Inventory Items
+    public const string ITEM_WATER = "ITEM.CONSUMABLE.WATER";
 }

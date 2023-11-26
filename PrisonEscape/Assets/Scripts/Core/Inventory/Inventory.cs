@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -20,20 +21,49 @@ public class Inventory
 
     public void AddItem(InventoryItem item)
     {
+        int newId = items.Count + 1;
+
+        item.index = newId;
+        item.inventory = this;
+
         // Check if we have the item.
         if (HasItem(item))
         {
             int? itemIndex = GetItemIndex(item);
 
-            /**
-             * Update the item amount if the item
-             * is stackable.
-             */
+            if (itemIndex != null)
+            {
+                // If the item is stackable then we combine the amounts.
+                if ((bool)items[(int)itemIndex].isStackable) 
+                {
+                    items[(int)itemIndex].amount = items[(int)itemIndex].amount + item.amount;
+                }
+                else
+                {
+
+                    items.Add(item);
+                }
+            }
         }
         else
         {
             // Add the new items to the list.
             items.Add(item);
+        }
+    }
+
+    public void RemoveItem(int index, int? amount)
+    {
+        InventoryItem item = GetItem(index);
+
+        if (item != null && amount != null && amount >= 1)
+        {
+            items[(int)index].amount = items[(int)index].amount - amount;
+        }
+        else
+        {
+            // Simply Remove the item.
+            items.RemoveAt(index);
         }
     }
 
@@ -61,5 +91,27 @@ public class Inventory
         }
 
         return null;
+    }
+
+    public InventoryItem GetItem(String itemId)
+    {
+        int? itemIndex = GetItemIndex(new InventoryItem(itemId));
+        
+        // Item was not found.
+        if (itemIndex == null)
+        {
+            return null;
+        }
+
+        InventoryItem item = items.ElementAt((int)itemIndex);
+        return item;
+
+    }
+
+    public InventoryItem GetItem(int itemIndex)
+    {
+        InventoryItem item = items.ElementAt((int)itemIndex);
+        return item;
+
     }
 }

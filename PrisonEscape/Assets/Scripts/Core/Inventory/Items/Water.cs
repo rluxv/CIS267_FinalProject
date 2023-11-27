@@ -17,11 +17,12 @@ class Water : InventoryItem
         
     }
 
-    public void Use(PlayerManager player)
+    public override void Use()
     {
-        Debug.Log(player.getBalance() + "balance");
+        // Debug.Log(player.getBalance() + "balance");
 
         // Remove the item from the inventory.
+        Debug.Log("used water");
         this.inventory.RemoveItem(this.index, 1);
     }
 }

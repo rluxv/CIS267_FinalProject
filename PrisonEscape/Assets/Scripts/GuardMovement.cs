@@ -12,6 +12,7 @@ public class GuardMovement : MonoBehaviour
     public GameObject[] path;
     private int pathLength;
     private int pathPos;
+    private bool Switch;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class GuardMovement : MonoBehaviour
         active = false;
        pathLength = 0;
         pathPos = 0;    
+        Switch = false;
     }
 
     // Update is called once per frame
@@ -41,17 +43,33 @@ public class GuardMovement : MonoBehaviour
     {
         Vector2 guard = transform.position;
         Vector2 pathV = path[pathPos].transform.position;
+        
 
         pathLength = path.Length;
         transform.position = Vector2.MoveTowards(transform.position, path[pathPos].transform.position, MovementSpeed * Time.deltaTime);
-        if(guard == pathV)
+       
+        if (guard == pathV && !Switch)
         {
             pathPos++;
         }
-        if(pathPos == path.Length)
+        if(pathLength == pathPos)
         {
-            pathPos = 0;
+            pathPos --;
+            Switch = true;  
         }
+        if (guard == pathV && Switch && pathPos != 0)
+        {
+            pathPos--;
+        }
+        if(pathPos == 0)
+        {
+            
+            Switch = false;
+        }
+
+        Debug.Log(pathPos);
+        Debug.Log(Switch);
+
     }
 
     private void pursuit()

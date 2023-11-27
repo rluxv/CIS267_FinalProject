@@ -58,7 +58,7 @@ public class Dialogue : MonoBehaviour
             
             inputVertical = Input.GetAxisRaw("Vertical");
         }
-
+        Debug.Log(choicePos);
         
     }
 

@@ -10,6 +10,7 @@ TagManager:
   - CombatLoader
   - SpawnPoint1
   - SpawnPoint2
+  - PlayerTrail
   layers:
   - Default
   - TransparentFX

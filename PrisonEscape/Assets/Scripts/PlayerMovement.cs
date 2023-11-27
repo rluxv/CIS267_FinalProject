@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,6 +29,20 @@ public class PlayerMovement : MonoBehaviour
         move();
         playerAnimate();
         playerStopCheck();
+        shortcut();
+    }
+
+    private void shortcut()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene("SampleScene");
+            
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     private void playerStopCheck()

@@ -21,7 +21,7 @@ public class InventoryItem : ItemInterface
         this.itemId = itemId;
     }
 
-    public void Use()
+    public virtual void Use()
     {
         throw new System.NotImplementedException();
     }

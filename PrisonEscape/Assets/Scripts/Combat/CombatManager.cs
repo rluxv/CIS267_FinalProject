@@ -15,7 +15,8 @@ public class CombatManager : MonoBehaviour
     private bool canPlayerAttack;
     private int playerHealth, playerHealthMax;
     private int enemyHealth, enemyHealthMax;
-
+    [SerializeField] private Transform enemyHeartAnim;
+    [SerializeField] private Transform enemyAnimSpawner;
     [SerializeField] private TMP_Text playerHealthTMP;
     [SerializeField] private TMP_Text enemyHealthTMP;
     [SerializeField] private TMP_Text CoinsEarnedTMP;
@@ -43,8 +44,11 @@ public class CombatManager : MonoBehaviour
     Inventory inventory;
     private int enemyItemsLeft;
     private int enemyAttackItemsLeft;
+    private bool playerIsGuarding;
+    [SerializeField] private TMP_Text guardingText;
     void Start()
     {
+        guardingText.gameObject.SetActive(false);
         ctrlrHold = false;
         combatEndMenuOpen = false;
         itemsMenuOpen = false;
@@ -53,7 +57,7 @@ public class CombatManager : MonoBehaviour
         DontDestroyOnLoadObj = GameObject.Find("DontDestroyOnLoad");
         // get inventory here, code below temporary
         inventory = GameManager.GetPlayer().getInventory();
-
+        playerIsGuarding = false;
         //Add some items to the inventory for testing
         for (int i = 0; i < 10; i++)
         {
@@ -129,9 +133,17 @@ public class CombatManager : MonoBehaviour
         {
             playerHealthTMP.color = Color.red;
         }
+        else
+        {
+            playerHealthTMP.color = Color.white;
+        }
         if (isEnemyHealthLow())
         {
             enemyHealthTMP.color = Color.red;
+        }
+        else
+        {
+            enemyHealthTMP.color = Color.white;
         }
     }
 
@@ -222,7 +234,7 @@ public class CombatManager : MonoBehaviour
                 // we will also need to use Input.GetButtonDown for joystick controls
                 if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("AButton")) //A Button on joystick
                 {
-                    Debug.Log("Attack Button (A) Pressed");
+                    
                     if (isPlayerTurn && canPlayerAttack)
                     {
                         playerAttackEnemy();
@@ -237,17 +249,36 @@ public class CombatManager : MonoBehaviour
                 }
                 else if (Input.GetButtonDown("XButton"))
                 {
-                    Debug.Log("X Button Pressed");
-
+                    playerGuard();
                 }
                 else if (Input.GetButtonDown("BButton"))
                 {
-                    Debug.Log("B Button Pressed");
+                   
 
                 }
             }
         }
         
+    }
+
+    private void playerGuard()
+    {
+        playerIsGuarding = true;
+        guardingText.gameObject.SetActive(true);
+        //PlayerActionsMenu.SetActive(false);
+        canPlayerAttack = false;
+        PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
+        // do attack & animations
+
+        updateHealthBars();
+
+        isPlayerTurn = false;
+
+        //Add a delay to make it seem like the enemy is "thinking"
+        if (!isEnemyDead())
+        {
+            Invoke("doEnemyTurn", 2);
+        }
     }
 
     private void hideItemsMenu()
@@ -290,16 +321,27 @@ public class CombatManager : MonoBehaviour
         // do enemy attack
         // this will be a lot more complex too as the enemy will be able to do different moves
         //
-        if(enemyHealth / enemyHealthMax <= .2 && enemyItemsLeft != 0) // if enemy health is low and we have a healing item, prioritize healing
+        if(((float)enemyHealth / (float)enemyHealthMax) <= .2 && enemyItemsLeft != 0) // if enemy health is low and we have a healing item, prioritize healing
         {
+            Debug.Log("Enemy health " + ((float)enemyHealth / (float)enemyHealthMax));
+            Debug.Log("Prioritizing healing");
+            Instantiate(enemyHeartAnim, enemyAnimSpawner.position, Quaternion.identity);
             // use a health item
             enemyItemsLeft--;
-            int healAmt = Random.Range(enemyHealth * 2, enemyHealthMax);
-            enemyHealth = healAmt;
+            int healAmt = Random.Range(3, enemyHealthMax);
+            enemyHealth += healAmt;
+            if (enemyHealth >= enemyHealthMax)
+            {
+                enemyHealth = enemyHealthMax;
+            }
         }
         else if(playerHealth / playerHealthMax <= .2) // if player health is low prioritize attacking
         {
             int damage = Random.Range(1, 4);
+            if(playerIsGuarding)
+            {
+                damage = damage / 2;
+            }
             damageTaken += damage;
             playerHealth -= damage;
         }
@@ -313,9 +355,14 @@ public class CombatManager : MonoBehaviour
                 if(enemyItemsLeft != 0)
                 {
                     // use a health item
+                    Instantiate(enemyHeartAnim, enemyAnimSpawner.position, Quaternion.identity);
                     enemyItemsLeft--;
-                    int healAmt = Random.Range(1, enemyHealthMax);
-                    enemyHealth = healAmt;
+                    int healAmt = Random.Range(3, enemyHealthMax);
+                    enemyHealth += healAmt;
+                    if (enemyHealth >= enemyHealthMax)
+                    {
+                        enemyHealth = enemyHealthMax;
+                    }
                 }
                 else
                 {
@@ -328,6 +375,10 @@ public class CombatManager : MonoBehaviour
                 {
                     enemyAttackItemsLeft--;
                     int damage = Random.Range(4, 9);
+                    if (playerIsGuarding)
+                    {
+                        damage = damage / 2;
+                    }
                     damageTaken += damage;
                     playerHealth -= damage;
                 }
@@ -339,13 +390,19 @@ public class CombatManager : MonoBehaviour
             if(decisionToMake == 3) // 3 = attack
             {
                 int damage = Random.Range(1, 4);
+                if (playerIsGuarding)
+                {
+                    damage = damage / 2;
+                }
                 damageTaken += damage;
                 playerHealth -= damage;
             }
         }
         updateHealthBars();
+        guardingText.gameObject.SetActive(false);
         if (!isPlayerDead())
         {
+            playerIsGuarding = false;
             isPlayerTurn = true;
             canPlayerAttack = true;
             PlayerActionsMenuAnimator.SetBool("canPlayerAttack", true);

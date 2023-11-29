@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
             inputVertical = Input.GetAxisRaw("Vertical");
             //Debug.Log(inputHorizontal + " " + inputVertical);   
             player.velocity = new Vector2(movementSpeed * inputHorizontal, movementSpeed * inputVertical); ;
-
+            
             PlayerPos.setPlayerPosX(transform.position.x);
             PlayerPos.setPlayerPosY(transform.position.y);
             PlayerPos.setPlayerPos(transform.position);

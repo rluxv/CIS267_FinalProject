@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerTrail : MonoBehaviour
 {
     public GameObject trail;
+    GameObject spawnedObject;
     private Vector2[] objectPositions;
     public float timer;
     private float maxTime;
@@ -25,9 +26,11 @@ public class PlayerTrail : MonoBehaviour
 
     private void PlaceTrail()
     {
-        GameObject spawnedObject = Instantiate(trail);
+        spawnedObject = Instantiate(trail);
         spawnedObject.transform.position  = PlayerPos.getPlayerPos();
         
+        pos++;
+        //Debug.Log("Object Position: " + spawnedObject.transform.position);
     }
 
     private void timerTick()
@@ -40,11 +43,11 @@ public class PlayerTrail : MonoBehaviour
            
                 
         }
-        Debug.Log("Timer: " + timer);
+        //Debug.Log("Timer: " + timer);
     }
 
-    public Vector2 getTrailPositions(int i)
+    public Vector2 getTrailPos()
     {
-        return objectPositions[i];
+        return spawnedObject.transform.position;
     }
 }

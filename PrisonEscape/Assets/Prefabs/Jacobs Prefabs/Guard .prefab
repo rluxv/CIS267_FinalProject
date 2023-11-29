@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 3124093791654192775}
   - component: {fileID: 7804033295978774382}
   - component: {fileID: 1557397097522940226}
+  - component: {fileID: -3839825632054019952}
   m_Layer: 0
   m_Name: 'Guard '
   m_TagString: Untagged
@@ -267,6 +268,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.33626, y: 7.203561}
   m_EdgeRadius: 0
+--- !u!50 &-3839825632054019952
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754246168659216711}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &6615619941997614411
 PrefabInstance:
   m_ObjectHideFlags: 0

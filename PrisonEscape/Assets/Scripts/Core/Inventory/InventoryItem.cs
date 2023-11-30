@@ -10,11 +10,13 @@ public class InventoryItem : ItemInterface
     public string name;
     public int? amount;
     public bool? isStackable;
-    public Inventory inventory;
+    private Inventory inventory;
     public int index;
 
     public InventoryItem()
-    { }
+    {
+        amount = 1;
+    }
 
     public InventoryItem(string itemId)
     {
@@ -24,5 +26,15 @@ public class InventoryItem : ItemInterface
     public virtual void Use()
     {
         throw new System.NotImplementedException();
+    }
+
+    public void SetInventory(Inventory inventory)
+    {
+        this.inventory = inventory;
+    }
+
+    public Inventory GetInventory()
+    {
+        return this.inventory;
     }
 }

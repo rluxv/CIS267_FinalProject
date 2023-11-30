@@ -11,7 +11,7 @@ public class Inventory
     public int inventorySize;
 
     // Inventory Items
-    private List<InventoryItem> items;
+    public List<InventoryItem> items;
 
     public Inventory()
     {
@@ -24,10 +24,10 @@ public class Inventory
         int newId = items.Count + 1;
 
         item.index = newId;
-        item.inventory = this;
+        item.SetInventory(this);
 
         // Check if we have the item.
-        if (HasItem(item))
+        /*if (HasItem(item))
         {
             int? itemIndex = GetItemIndex(item);
 
@@ -51,7 +51,8 @@ public class Inventory
         {
             // Add the new items to the list.
             items.Add(item);
-        }
+        }*/
+        items.Add(item);
     }
 
     public void RemoveItem(int index, int? amount)

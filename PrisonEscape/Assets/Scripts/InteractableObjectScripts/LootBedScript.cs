@@ -38,6 +38,7 @@ public class LootBedScript : MonoBehaviour
             isLooted = true;
             buttonPrompt.SetActive(false);
             bedSpriteRenderer.sprite = postLootSprite;
+            GameObject.FindGameObjectsWithTag("gameManager")[0].GetComponent<GameManager_v2>().GetPlayer().getInventory().AddItem(new Water());
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

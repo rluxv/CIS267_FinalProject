@@ -91,7 +91,7 @@ public class PauseMenu : MonoBehaviour
                 else if(selected == 1)
                 {
                     // save game
-
+                    GameManagerObj.GetComponent<GameManager_v2>().SaveGame();
 
                     //close pause menu
                     pauseMenuOpen = false;

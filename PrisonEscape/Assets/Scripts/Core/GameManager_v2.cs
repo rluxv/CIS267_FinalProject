@@ -73,9 +73,9 @@ public class GameManager_v2 : MonoBehaviour
     }
 
     /**
-     * When the user wants to create a new game save
-     * simply call this and it will create a new
-     * save template.
+     * OnCreateNewSave is invoked when a player
+     * requests a new game. Creates a default
+     * save and saves the file.
      */
     public void OnCreateNewSave()
     {
@@ -97,29 +97,47 @@ public class GameManager_v2 : MonoBehaviour
         levelLoaderTag = "SpawnPoint1";
     }
 
+    /**
+     * Get the current player manager
+     * instance that we have. Gives full access
+     * to the player.
+     */
     public PlayerManager GetPlayer()
     {
         return player;
     }
 
+    /**
+     * Returns the current game save.
+     */
     public GameSave_Template GetSave()
     {
         return gameSave;
     }
 
+    /**
+     * Set the current game save
+     * via it's id.
+     */
     public void SetSave(string guid)
     {
         gameSave = GameSave.getGameSave(guid);
     }
 
-    //  Adds a listener for when the scene changes
+    /**
+     * Mount a listener for scene changes,
+     * any scene change dependant should happen here.
+     */
     private void OnEnable()
     {
         //Debug.Log("OnEnable Called");
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    //  removes the listener for when the scene changes (on game termination)
+    /**
+     * Unmounts the listener for scene changes,
+     * on game termination.
+     */
     private void OnDisable()
     {
         //Debug.Log("OnDisable");
@@ -132,7 +150,10 @@ public class GameManager_v2 : MonoBehaviour
         levelLoaderTag = tag;
     }
 
-    //  When a scene changes, This function is called
+    /**
+     * OnSceneLoaded is invoked when a scene is
+     * fully loaded.
+     */
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
 
@@ -166,7 +187,30 @@ public class GameManager_v2 : MonoBehaviour
 
     }
 
+    /**
+     * Used to save the current game state
+     * so it can be loaded in at a different time.
+     */
+    public void SaveGame()
+    {
+        // Save the players current position.
+        gameSave.position = o_player.transform.position;
 
+        // Save the players current health.
+        gameSave.playerHealth = player.GetHealth();
+
+        // Save the players coins.
+        gameSave.coins = player.getBalance();
+
+        // Save player inventory.
+        gameSave.playerInventory = player.getInventory();
+
+        Debug.Log("Saving Game....");
+        Debug.Log(JsonUtility.ToJson(gameSave));
+
+        // Save the game file.
+        GameSave.SaveGame(gameSave);
+    }
 
 
 

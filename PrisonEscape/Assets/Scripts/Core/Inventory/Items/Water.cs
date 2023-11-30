@@ -23,7 +23,7 @@ class Water : InventoryItem
 
         // Remove the item from the inventory.
         Debug.Log("used water");
-        this.inventory.RemoveItem(this.index, 1);
+        this.GetInventory().RemoveItem(this.index, 1);
     }
 }
 

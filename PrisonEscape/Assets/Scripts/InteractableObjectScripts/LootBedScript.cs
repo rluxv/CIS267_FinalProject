@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class LootBedScript : MonoBehaviour
 {
@@ -38,6 +39,12 @@ public class LootBedScript : MonoBehaviour
             isLooted = true;
             buttonPrompt.SetActive(false);
             bedSpriteRenderer.sprite = postLootSprite;
+
+            //  Probably make an object that has every posible item in an array
+            //  find it once
+            //  draw a weighted random number, and return the respective item here
+            //  then pass it where Water() is
+
             GameObject.FindGameObjectsWithTag("gameManager")[0].GetComponent<GameManager_v2>().GetPlayer().getInventory().AddItem(new Water());
         }
     }

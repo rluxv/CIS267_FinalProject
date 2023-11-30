@@ -164,7 +164,7 @@ public class GameManager_v2 : MonoBehaviour
             levelLoaderTag = "SpawnPoint1";
             
         }
-        Debug.Log("levelLoaderTag");
+        //Debug.Log("levelLoaderTag");
 
 
         if (levelLoaderTag != "")

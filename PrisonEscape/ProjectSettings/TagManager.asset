@@ -12,6 +12,7 @@ TagManager:
   - SpawnPoint2
   - PlayerTrail
   - Deleter
+  - gameManager
   layers:
   - Default
   - TransparentFX

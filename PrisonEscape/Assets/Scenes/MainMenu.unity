@@ -1296,7 +1296,7 @@ GameObject:
   - component: {fileID: 572086573}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: gameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4465,6 +4465,7 @@ MonoBehaviour:
   obj: {fileID: 2067993346}
   inventory:
     inventorySize: 10
+    items: []
   gameManagerObject: {fileID: 572086571}
 --- !u!114 &2067993354
 MonoBehaviour:

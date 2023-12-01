@@ -18,4 +18,5 @@ public static class Config
 
     // Inventory Items
     public const string ITEM_WATER = "ITEM.CONSUMABLE.WATER";
+    public const string ITEM_BRASS_KNUCKLES = "ITEM.WEAPON.BRASSKNUCKLES";
 }

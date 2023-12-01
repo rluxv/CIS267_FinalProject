@@ -17,6 +17,8 @@ public class CombatManager : MonoBehaviour
     private int enemyHealth, enemyHealthMax;
     [SerializeField] private Transform enemyHeartAnim;
     [SerializeField] private Transform enemyAnimSpawner;
+    [SerializeField] private Transform playerAnimSpawner;
+
     [SerializeField] private TMP_Text playerHealthTMP;
     [SerializeField] private TMP_Text enemyHealthTMP;
     [SerializeField] private TMP_Text CoinsEarnedTMP;
@@ -59,12 +61,12 @@ public class CombatManager : MonoBehaviour
         inventory = GameManager.GetPlayer().getInventory();
         playerIsGuarding = false;
         //Add some items to the inventory for testing
-        for (int i = 0; i < 10; i++)
-        {
-            Water it = new Water();
-            inventory.AddItem(it);
-            //Debug.Log(inventory.GetItem(i).name + " Inv");
-        }
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    Water it = new Water();
+        //    inventory.AddItem(it);
+        //    //Debug.Log(inventory.GetItem(i).name + " Inv");
+        //}
         updateItemsMenuList();
 
 
@@ -151,7 +153,7 @@ public class CombatManager : MonoBehaviour
     {
         if(itemsMenuOpen)
         {
-            if (Input.GetButtonDown("BButton"))
+            if (Input.GetButtonDown("BButton") || Input.GetKeyDown(KeyCode.Escape))
             {
                 ItemsMenuAnimator.SetTrigger("FadeOut");
                 selected = 0;
@@ -163,8 +165,21 @@ public class CombatManager : MonoBehaviour
                 if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_WATER)
                 {
                     //Debug.Log("Used a water.");
-                    inventory.GetItem<Water>(selected).Use();
+                    //inventory.GetItem<Water>(selected).Use(); not working
                     updateItemsMenuList();
+                    Instantiate(enemyHeartAnim, playerAnimSpawner.position, Quaternion.identity);
+                    int healthToRestore = Random.Range(2, 5);
+                    playerHealth += healthToRestore;
+                    updateHealthBars();
+                    if (playerHealth > playerHealthMax) playerHealth = playerHealthMax;
+                    ItemsMenuAnimator.SetTrigger("FadeOut");
+                    PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
+                    selected = 0;
+                    Invoke("hideItemsMenu", (float)0.4);
+                    canPlayerAttack = false;
+                    isPlayerTurn = false;
+                    Invoke("doEnemyTurn", 3);
+                    
                     //Invoke("hideItemsMenu", (float)0.4);
                 }
             }
@@ -247,7 +262,7 @@ public class CombatManager : MonoBehaviour
                         loadItemsMenu();
                     }
                 }
-                else if (Input.GetButtonDown("XButton"))
+                else if (Input.GetButtonDown("XButton") || Input.GetKeyDown(KeyCode.X))
                 {
                     playerGuard();
                 }
@@ -303,7 +318,7 @@ public class CombatManager : MonoBehaviour
         int damage = Random.Range(1, 4);
         damageGiven += damage;
         enemyHealth -= damage;
-        Debug.Log("Enemy Health: " + enemyHealth + "/" + enemyHealthMax);
+        //Debug.Log("Enemy Health: " + enemyHealth + "/" + enemyHealthMax);
         updateHealthBars();
 
         isPlayerTurn = false;
@@ -323,8 +338,8 @@ public class CombatManager : MonoBehaviour
         //
         if(((float)enemyHealth / (float)enemyHealthMax) <= .2 && enemyItemsLeft != 0) // if enemy health is low and we have a healing item, prioritize healing
         {
-            Debug.Log("Enemy health " + ((float)enemyHealth / (float)enemyHealthMax));
-            Debug.Log("Prioritizing healing");
+            //Debug.Log("Enemy health " + ((float)enemyHealth / (float)enemyHealthMax));
+            //Debug.Log("Prioritizing healing");
             Instantiate(enemyHeartAnim, enemyAnimSpawner.position, Quaternion.identity);
             // use a health item
             enemyItemsLeft--;
@@ -415,7 +430,7 @@ public class CombatManager : MonoBehaviour
     {
         if (enemyHealth <= 0)
         {
-            Debug.Log("Enemy Defeated");
+            //Debug.Log("Enemy Defeated");
             enemyHealth = 0;
             updateHealthBars();
 
@@ -475,7 +490,7 @@ public class CombatManager : MonoBehaviour
     {
         if (playerHealth <= 0)
         {
-            Debug.Log("Player Defeated");
+            //Debug.Log("Player Defeated");
             playerHealth = 0;
             updateHealthBars();
             return true;

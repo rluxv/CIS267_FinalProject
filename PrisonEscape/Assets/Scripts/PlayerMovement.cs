@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed;
     private float inputHorizontal, inputVertical;
     private Animator animator;
-    
+    public float sprintBoost;
 
     
     // Start is called before the first frame update
@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         playerStopCheck();
         shortcut();
     }
+
+   
 
     private void shortcut()
     {
@@ -111,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
             inputVertical = Input.GetAxisRaw("Vertical");
             //Debug.Log(inputHorizontal + " " + inputVertical);   
             player.velocity = new Vector2(movementSpeed * inputHorizontal, movementSpeed * inputVertical); ;
-            
+            sprint();
             PlayerPos.setPlayerPosX(transform.position.x);
             PlayerPos.setPlayerPosY(transform.position.y);
             PlayerPos.setPlayerPos(transform.position);
@@ -120,6 +122,19 @@ public class PlayerMovement : MonoBehaviour
 
         
     }
+    private void sprint()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) )
+        {
+            Debug.Log("Sprinting activated");
+            movementSpeed += sprintBoost;
+        }
 
-    
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            movementSpeed -= sprintBoost;
+            Debug.Log("Sprinting deactivated");
+        }
+    }
+
 }

@@ -182,6 +182,28 @@ public class CombatManager : MonoBehaviour
                     
                     //Invoke("hideItemsMenu", (float)0.4);
                 }
+                else if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_BRASS_KNUCKLES)
+                {
+                    // do brass knuckles attack
+                    canPlayerAttack = false;
+                    PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
+                    // do attack & animations
+
+                    int damage = Random.Range(5, 8);
+                    damageGiven += damage;
+                    enemyHealth -= damage;
+                    //Debug.Log("Enemy Health: " + enemyHealth + "/" + enemyHealthMax);
+                    updateHealthBars();
+
+                    isPlayerTurn = false;
+                    ItemsMenuAnimator.SetTrigger("FadeOut");
+                    Invoke("hideItemsMenu", (float)0.4);
+                    //Add a delay to make it seem like the enemy is "thinking"
+                    if (!isEnemyDead())
+                    {
+                        Invoke("doEnemyTurn", 3);
+                    }
+                }
             }
             if (Input.GetKeyDown(KeyCode.S) || (ctrlPress && Input.GetAxis("Vertical") == -1))
             {

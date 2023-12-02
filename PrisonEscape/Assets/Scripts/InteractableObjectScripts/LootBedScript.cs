@@ -45,7 +45,24 @@ public class LootBedScript : MonoBehaviour
             //  draw a weighted random number, and return the respective item here
             //  then pass it where Water() is
 
-            GameObject.FindGameObjectsWithTag("gameManager")[0].GetComponent<GameManager_v2>().GetPlayer().getInventory().AddItem(new Water());
+            GameObject.FindGameObjectsWithTag("ItemLootTable")[0].GetComponent<ItemLootTable>().drawFromLootTable();
+
+            //  all these on each bed is unessesary
+            //int i = Random.Range(0, 3);
+            //if (i == 0)
+            //{
+            //    GameObject.FindGameObjectsWithTag("gameManager")[0].GetComponent<GameManager_v2>().GetPlayer().getInventory().AddItem(new Water());
+            //}
+            //else if (i == 1)
+            //{
+            //    GameObject.FindGameObjectsWithTag("gameManager")[0].GetComponent<GameManager_v2>().GetPlayer().getInventory().AddItem(new BrassKnuckles());
+            //}
+            //else if (i == 2)
+            //{
+            //    GameObject.FindGameObjectsWithTag("gameManager")[0].GetComponent<GameManager_v2>().GetPlayer().getInventory().AddItem(new GuardBaton());
+            //}
+
+
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

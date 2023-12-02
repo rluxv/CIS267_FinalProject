@@ -11,6 +11,7 @@ public class GameManager_v2 : MonoBehaviour
     //  Level Loader
     private GameObject sceneSpawnPoint;
     private string levelLoaderTag;
+    private ItemLootTable itemLootTableScript;
 
     // Player Varibles
     [SerializeField]
@@ -25,6 +26,7 @@ public class GameManager_v2 : MonoBehaviour
     {
         // Get the player manager from the player object.
         player = o_player.GetComponent<PlayerManager>();
+        itemLootTableScript = this.gameObject.transform.GetChild(0).GetComponent<ItemLootTable>();
     }
 
     // Update is called once per frame
@@ -184,6 +186,14 @@ public class GameManager_v2 : MonoBehaviour
         //  Update PlayerPosition
         PlayerPos.setPlayerPosX(transform.position.x);
         PlayerPos.setPlayerPosY(transform.position.y);
+
+        //  update loot table to new level's loot
+        Debug.Log("Prior");
+        if (itemLootTableScript != null)
+        {
+            itemLootTableScript.updateCurrentLevelForLoot();
+        }
+        
 
     }
 

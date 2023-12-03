@@ -9,6 +9,8 @@ public class VendorScript : MonoBehaviour
     [SerializeField] private GameObject buttonPrompt;
 
     [SerializeField] private GameObject buyMenu;
+    private GameManager_v2 GameManager;
+
     private bool playerInRange;
     public static bool menuOpen;
 
@@ -23,6 +25,7 @@ public class VendorScript : MonoBehaviour
         menuOpen = false;
         selected = 0;
         ctrlrHold = false;
+        GameManager = GameObject.Find("GameManager").GetComponent<GameManager_v2>();
     }
 
     // Update is called once per frame
@@ -83,6 +86,7 @@ public class VendorScript : MonoBehaviour
             buyMenu.SetActive(true);
             Time.timeScale = 0f;
             buttonPrompt.SetActive(false);
+            BalanceText.SetText("Balance: " + GameManager.GetPlayer().getBalance());
         }
         if (menuOpen && Input.GetButtonDown("BButton") || Input.GetKeyDown(KeyCode.Escape))
         {
@@ -90,6 +94,43 @@ public class VendorScript : MonoBehaviour
             Time.timeScale = 1f;
             buyMenu.SetActive(false);
             buttonPrompt.SetActive(true);
+            
+        }
+        if (menuOpen && Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Return))
+        {
+            if(selected == 0)
+            {
+                //buy water
+                if(GameManager.GetPlayer().getBalance() >= 4)
+                {
+                    GameManager.GetPlayer().getInventory().AddItem(new Water());
+                    GameManager.GetPlayer().setBalance(GameManager.GetPlayer().getBalance() - 4);
+                    Debug.Log("Bought water");
+                }
+            }
+            else if(selected == 1)
+            {
+                //buy brass knuckles
+                if (GameManager.GetPlayer().getBalance() >= 8)
+                {
+                    GameManager.GetPlayer().getInventory().AddItem(new BrassKnuckles());
+                    GameManager.GetPlayer().setBalance(GameManager.GetPlayer().getBalance() - 8);
+                    Debug.Log("Bought brassknuckles");
+                }
+            }
+            else if(selected == 2)
+            {
+                //buy baton
+                if (GameManager.GetPlayer().getBalance() >= 8)
+                {
+                    GameManager.GetPlayer().getInventory().AddItem(new GuardBaton());
+                    GameManager.GetPlayer().setBalance(GameManager.GetPlayer().getBalance() - 8);
+                    Debug.Log("Bought baton");
+
+                }
+            }
+            BalanceText.SetText("Balance: " + GameManager.GetPlayer().getBalance());
+
         }
 
         if (Input.GetKeyDown(KeyCode.S) || (ctrlPress && Input.GetAxis("Vertical") == -1) && menuOpen)

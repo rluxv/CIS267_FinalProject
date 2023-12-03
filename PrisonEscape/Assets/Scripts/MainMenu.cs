@@ -104,10 +104,9 @@ public class MainMenu : MonoBehaviour
     private void input(bool ctrlPress)
     {
         //For debug purposes
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("XButton"))
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("XButton"))
         {
-            DontDestroyOnLoadObj.SetActive(true);
-            SceneManager.LoadScene("CombatScene");
+            SceneManager.LoadScene("CreditsMenu");
         }
 
         if (saveMenuOpen)

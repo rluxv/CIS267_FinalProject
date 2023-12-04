@@ -15,7 +15,8 @@ class GuardBaton : InventoryItem
         amount = 1;
         name = "Guard Baton";
         isStackable = false;
-
+        maxUses = 2;
+        numUses = 0;
 
 
     }
@@ -23,8 +24,18 @@ class GuardBaton : InventoryItem
 
     public override void Use()
     {
-        Debug.Log("Used Guard Baton");
-        this.GetInventory().RemoveItem(this.index, 1);
+        if(numUses < maxUses)
+        {
+            Debug.Log("Used Guard Baton");
+            numUses++;
+
+        }
+        else
+        {
+            Debug.Log("Reached max uses");
+
+        }
+        //this.GetInventory().RemoveItem(this.index, 1);
     }
 
 

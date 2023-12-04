@@ -12,6 +12,8 @@ public class InventoryItem : ItemInterface
     public bool? isStackable;
     private Inventory inventory;
     public int index;
+    public int maxUses;
+    public int numUses;
 
     public InventoryItem()
     {

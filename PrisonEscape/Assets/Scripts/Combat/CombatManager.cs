@@ -82,6 +82,12 @@ public class CombatManager : MonoBehaviour
         //    inventory.AddItem(it);
         //    Debug.Log(inventory.GetItem(i).name + " Inv");
         //}
+
+
+        //TESTING REMOVE
+        //BrassKnuckles it = new BrassKnuckles();
+        //inventory.AddItem(it);
+
         updateItemsMenuList();
 
 
@@ -211,7 +217,6 @@ public class CombatManager : MonoBehaviour
                 else if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_BRASS_KNUCKLES)
                 {
                     // do brass knuckles attack
-                    //inventory.GetItem<BrassKnuckles>(selected).Use();
                     inventory.RemoveItem(selected, 1);
 
                     canPlayerAttack = false;
@@ -242,6 +247,7 @@ public class CombatManager : MonoBehaviour
                 {
                     //inventory.GetItem<GuardBaton>(selected).Use();
                     inventory.RemoveItem(selected, 1);
+
                     // do Guard Baton attack
                     canPlayerAttack = false;
                     PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);

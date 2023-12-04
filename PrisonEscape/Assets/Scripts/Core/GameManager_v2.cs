@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,7 @@ public class GameManager_v2 : MonoBehaviour
     private GameObject sceneSpawnPoint;
     private string levelLoaderTag;
     private ItemLootTable itemLootTableScript;
+
 
     // Player Varibles
     [SerializeField]
@@ -188,12 +190,11 @@ public class GameManager_v2 : MonoBehaviour
         PlayerPos.setPlayerPosY(transform.position.y);
 
         //  update loot table to new level's loot
-        Debug.Log("Prior");
         if (itemLootTableScript != null)
         {
             itemLootTableScript.updateCurrentLevelForLoot();
         }
-        
+
 
     }
 

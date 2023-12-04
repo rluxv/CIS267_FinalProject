@@ -595,11 +595,31 @@ public class CombatManager : MonoBehaviour
 
     public void endBattle()
     {
+          
         DontDestroyOnLoadObj.SetActive(true);
         GameManager.GetPlayer().SetHealth(playerHealth);
         GameManager.GetPlayer().increaseBalance(coinsEarned);
         GameManager.GetPlayer().setInventory(inventory);
         //We will change this to the scene the player was previously in
+        if (!isBoss)
+        {
+            int random = Random.Range(0, 4);
+            if (random == 3)
+            {
+                GameManager.getKeys().setHasGuardBadge(true);
+            }
+        }
+        else
+        {
+            if(GameManager_v2.PreviousScene == "Level1")
+            {
+                GameManager.getKeys().setLevelTwoKey(true);
+            }
+            else if (GameManager_v2.PreviousScene == "Level2")
+            {
+                GameManager.getKeys().setLevelThreeKey(true);
+            }
+        }
         SceneManager.LoadScene(GameManager_v2.PreviousScene);
     }
 

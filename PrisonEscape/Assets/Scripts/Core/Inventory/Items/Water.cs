@@ -13,7 +13,7 @@ class Water : InventoryItem
         itemId = Config.ITEM_WATER;
         amount = 1;
         name = "Water";
-        isStackable= true;
+        isStackable= false;
         
     }
 

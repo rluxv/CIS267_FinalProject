@@ -53,7 +53,7 @@ public class InmateMovement : MonoBehaviour
 
         int pathLength = pathFindingPositions.Count;
         NavMesh.CalculatePath(transform.position, pathFindingPositions[pathIndex], NavMesh.AllAreas, path);
-        NavMeshAgent.SetPath(path);
+        //NavMeshAgent.SetPath(path);
 
         if (guard == pathV && !shouldSwitch)
         {

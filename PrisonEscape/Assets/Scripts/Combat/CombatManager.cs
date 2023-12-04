@@ -178,17 +178,18 @@ public class CombatManager : MonoBehaviour
         {
             if (Input.GetButtonDown("BButton") || Input.GetKeyDown(KeyCode.Escape))
             {
-                ItemsMenuAnimator.SetTrigger("FadeOut");
                 selected = 0;
                 ItemSelectorTMP.GetComponent<RectTransform>().anchoredPosition = ItemsTMP[selected].GetComponent<RectTransform>().anchoredPosition;
+                ItemsMenuAnimator.SetTrigger("FadeOut");
                 Invoke("hideItemsMenu", (float)0.4);
             }
             if (Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Return))
             {
+
                 if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_WATER)
                 {
                     //Debug.Log("Used a water.");
-                    inventory.GetItem<Water>(selected).Use();
+                    //inventory.GetItem<Water>(selected).Use();
                     updateItemsMenuList();
                     Instantiate(enemyHeartAnim, playerAnimSpawner.position, Quaternion.identity);
                     int healthToRestore = Random.Range(2, 5);
@@ -208,7 +209,7 @@ public class CombatManager : MonoBehaviour
                 else if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_BRASS_KNUCKLES)
                 {
                     // do brass knuckles attack
-                    inventory.GetItem<BrassKnuckles>(selected).Use();
+                    //inventory.GetItem<BrassKnuckles>(selected).Use();
                     canPlayerAttack = false;
                     PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
                     // do attack & animations
@@ -235,7 +236,7 @@ public class CombatManager : MonoBehaviour
                 }
                 else if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_GUARD_BATON)
                 {
-                    inventory.GetItem<GuardBaton>(selected).Use();
+                    //inventory.GetItem<GuardBaton>(selected).Use();
                     // do Guard Baton attack
                     canPlayerAttack = false;
                     PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
@@ -261,6 +262,8 @@ public class CombatManager : MonoBehaviour
                         Invoke("doEnemyTurn", 3);
                     }
                 }
+                selected = 0;
+                ItemSelectorTMP.GetComponent<RectTransform>().anchoredPosition = ItemsTMP[selected].GetComponent<RectTransform>().anchoredPosition;
             }
             if (Input.GetKeyDown(KeyCode.S) || (ctrlPress && Input.GetAxis("Vertical") == -1))
             {

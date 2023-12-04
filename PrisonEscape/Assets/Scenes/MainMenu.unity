@@ -1315,6 +1315,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 718844124}
+  - {fileID: 1501399448}
   m_Father: {fileID: 1612045865}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &572086573
@@ -3502,6 +3503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1501399448}
   - component: {fileID: 1501399449}
+  - component: {fileID: 1501399450}
   m_Layer: 0
   m_Name: BackgroundMusicPlayer
   m_TagString: Untagged
@@ -3522,7 +3524,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1612045865}
+  m_Father: {fileID: 572086572}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1501399449
 AudioSource:
@@ -3534,7 +3536,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fbb4919affd17434082e657225f6ff2c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a3c30e3503e3f95458f0c584fbcb0f64, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.507
   m_Pitch: 1
@@ -3620,6 +3622,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1501399450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501399447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3cf75d9cbd59614195bebc8782214c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelMusic: {fileID: 8300000, guid: a3c30e3503e3f95458f0c584fbcb0f64, type: 3}
+  battleMusic: {fileID: 8300000, guid: 3cba9a2ec420fb446884cb006c631418, type: 3}
 --- !u!1 &1612045863
 GameObject:
   m_ObjectHideFlags: 0
@@ -3667,7 +3683,6 @@ Transform:
   - {fileID: 572086572}
   - {fileID: 519477995}
   - {fileID: 1161878306}
-  - {fileID: 1501399448}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1780692221

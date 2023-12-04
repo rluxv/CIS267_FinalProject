@@ -16,25 +16,33 @@ public class LevelLoader : MonoBehaviour
         Debug.Log(transform.gameObject.tag + " Collided with: " + collision.gameObject.tag);
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (transform.gameObject.name == "SpawnPoint1" || transform.gameObject.name == "SpawnPoint2")
-            collision.GetComponent<PlayerManager>().getGameManagerObject().GetComponent<GameManager_v2>().setLevelLoaderTag(transform.gameObject.name);
-            switch (transform.gameObject.tag)
+            //if (transform.gameObject.name == "SpawnPoint1" || transform.gameObject.name == "SpawnPoint2")
+            GameManager_v2 gameManager = collision.GetComponent<PlayerManager>().getGameManagerObject().GetComponent<GameManager_v2>();
+            KeyManager keys = gameManager.getKeys();
+
+            gameManager.setLevelLoaderTag(transform.gameObject.name);
+
+            if (transform.gameObject.tag.Equals("Level1Loader"))
             {
-                case "Level1Loader":
-                    switchScenes("Level1");
-                    break;
-                case "Level2Loader":
-                    switchScenes("Level2");
-                    break;
-                case "Level3Loader":
-                    switchScenes("Level3");
-                    break;
-                case "CombatLoader":
-                    if(GameManager_v2.PreviousScene != "CombatScene")
-                    {
-                        switchScenes("CombatScene");
-                    }
-                    break;
+                if (!keys.hasLevelOneKey) return;
+                switchScenes("Level1");
+            }
+
+            if (transform.gameObject.tag.Equals("Level2Loader"))
+            {
+                if (!keys.hasLevelTwoKey) return;
+                switchScenes("Level2");
+            }
+
+            if (transform.gameObject.tag.Equals("Level3Loader"))
+            {
+                if (!keys.hasLevelThreeKey) return;
+                switchScenes("Level3");
+            }
+
+            if (transform.gameObject.tag.Equals("CombatLoader"))
+            {
+                switchScenes("CombatScene");
             }
         }
     }

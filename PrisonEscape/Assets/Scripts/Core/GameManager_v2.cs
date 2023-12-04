@@ -11,6 +11,7 @@ public class GameManager_v2 : MonoBehaviour
     //  Level Loader
     private GameObject sceneSpawnPoint;
     private string levelLoaderTag;
+    private KeyManager keyManager;
     private ItemLootTable itemLootTableScript;
 
     // Player Varibles
@@ -26,6 +27,7 @@ public class GameManager_v2 : MonoBehaviour
     {
         // Get the player manager from the player object.
         player = o_player.GetComponent<PlayerManager>();
+        keyManager = new KeyManager();
         itemLootTableScript = this.gameObject.transform.GetChild(0).GetComponent<ItemLootTable>();
     }
 
@@ -64,6 +66,7 @@ public class GameManager_v2 : MonoBehaviour
             player.SetHealth(gameSave.playerHealth);
             player.setBalance(gameSave.coins);
             player.setInventory(gameSave.playerInventory);
+            keyManager = new KeyManager(gameSave.keys.hasLevelOneKey, gameSave.keys.hasLevelTwoKey, gameSave.keys.hasLevelThreeKey);
         }
         else
         {
@@ -88,6 +91,7 @@ public class GameManager_v2 : MonoBehaviour
         gameSave.playerHealth = Config.DEFAULT_ENTITY_HEALTH;
         gameSave.playerInventory = new Inventory();
         gameSave.coins = Config.STARTING_BALANCE;
+        gameSave.keys = new KeyManager();
 
         // Save the game and generate a new save id.
         string saveId = GameSave.SaveGame(gameSave);
@@ -220,6 +224,11 @@ public class GameManager_v2 : MonoBehaviour
 
         // Save the game file.
         GameSave.SaveGame(gameSave);
+    }
+
+    public KeyManager getKeys()
+    {
+        return keyManager;
     }
 
 

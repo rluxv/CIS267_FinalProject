@@ -14,6 +14,8 @@ TagManager:
   - Deleter
   - gameManager
   - ItemLootTable
+  - PATH_OBJECTS_CONTAINER
+  - PATH_OBJECT
   layers:
   - Default
   - TransparentFX

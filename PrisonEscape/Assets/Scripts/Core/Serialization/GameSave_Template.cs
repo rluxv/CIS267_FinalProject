@@ -14,4 +14,5 @@ public class GameSave_Template
     public float playerHealth;
     public Inventory playerInventory;
     public int coins;
+    public KeyManager keys;
 }

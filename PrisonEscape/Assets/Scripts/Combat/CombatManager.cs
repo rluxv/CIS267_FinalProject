@@ -76,11 +76,11 @@ public class CombatManager : MonoBehaviour
         inventory = GameManager.GetPlayer().getInventory();
         playerIsGuarding = false;
         //Add some items to the inventory for testing
-        //for (int i = 0; i < 10; i++)
+        //for (int i = 0; i < 6; i++)
         //{
         //    Water it = new Water();
         //    inventory.AddItem(it);
-        //    //Debug.Log(inventory.GetItem(i).name + " Inv");
+        //    Debug.Log(inventory.GetItem(i).name + " Inv");
         //}
         updateItemsMenuList();
 
@@ -137,7 +137,7 @@ public class CombatManager : MonoBehaviour
         {
             try
             {
-                //Debug.Log("Item " + i + " :" + inventory.GetItem(i).name);
+                Debug.Log("Item " + i + " :" + inventory.GetItem<InventoryItem>(i).name);
                 ItemsTMP[i].SetText(inventory.GetItem<InventoryItem>(i).name);
             }
             catch (System.Exception e)
@@ -190,7 +190,9 @@ public class CombatManager : MonoBehaviour
                 {
                     //Debug.Log("Used a water.");
                     //inventory.GetItem<Water>(selected).Use();
-                    updateItemsMenuList();
+                    inventory.RemoveItem(selected, 1);
+                    //Debug.Log(inventory.items);
+                    
                     Instantiate(enemyHeartAnim, playerAnimSpawner.position, Quaternion.identity);
                     int healthToRestore = Random.Range(2, 5);
                     playerHealth += healthToRestore;
@@ -210,6 +212,8 @@ public class CombatManager : MonoBehaviour
                 {
                     // do brass knuckles attack
                     //inventory.GetItem<BrassKnuckles>(selected).Use();
+                    inventory.RemoveItem(selected, 1);
+
                     canPlayerAttack = false;
                     PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
                     // do attack & animations
@@ -237,6 +241,7 @@ public class CombatManager : MonoBehaviour
                 else if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_GUARD_BATON)
                 {
                     //inventory.GetItem<GuardBaton>(selected).Use();
+                    inventory.RemoveItem(selected, 1);
                     // do Guard Baton attack
                     canPlayerAttack = false;
                     PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
@@ -262,6 +267,7 @@ public class CombatManager : MonoBehaviour
                         Invoke("doEnemyTurn", 3);
                     }
                 }
+                updateItemsMenuList();
                 selected = 0;
                 ItemSelectorTMP.GetComponent<RectTransform>().anchoredPosition = ItemsTMP[selected].GetComponent<RectTransform>().anchoredPosition;
             }

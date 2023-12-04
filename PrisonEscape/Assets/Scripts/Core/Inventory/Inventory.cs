@@ -60,15 +60,16 @@ public class Inventory
         InventoryItem item = GetItem<InventoryItem>(index);
         if (index >= items.Count) return;
 
-        if (item != null && amount != null && amount >= 1)
-        {
-            items[(int)index].amount = items[(int)index].amount - amount;
-        }
-        else
-        {
-            // Simply Remove the item.
-            items.RemoveAt(index);
-        }
+        //if (item != null && amount != null && amount >= 1)
+        //{
+        //    items[(int)index].amount = items[(int)index].amount - amount;
+        //}
+        //else
+        //{
+        //    // Simply Remove the item.
+        //    items.RemoveAt(index);
+        //}
+        items.RemoveAt(index);
     }
 
     public bool HasItem(InventoryItem _item)

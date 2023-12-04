@@ -614,6 +614,7 @@ public class CombatManager : MonoBehaviour
             if(GameManager_v2.PreviousScene == "Level1")
             {
                 GameManager.getKeys().setLevelTwoKey(true);
+                //inform player they have obtained level key
             }
             else if (GameManager_v2.PreviousScene == "Level2")
             {

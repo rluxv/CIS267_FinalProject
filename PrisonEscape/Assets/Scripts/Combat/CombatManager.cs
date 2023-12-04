@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -7,6 +8,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class CombatManager : MonoBehaviour
 {
@@ -48,8 +50,21 @@ public class CombatManager : MonoBehaviour
     private int enemyAttackItemsLeft;
     private bool playerIsGuarding;
     [SerializeField] private TMP_Text guardingText;
+
+
+    // variables only being used if the enemy is a boss
+    public bool isBoss;
+    private int bossHealthItems = 3;
+    private int bossAttackitems = 3;
+    private int bossStrongAttackItems = 2;
+    private int bossPlayerWeakeningItems = 2;
+    private bool playerGuardWeakened;
+    private bool playerAttackWeakened;
+
     void Start()
     {
+        playerGuardWeakened = false;
+        playerAttackWeakened = false;
         guardingText.gameObject.SetActive(false);
         ctrlrHold = false;
         combatEndMenuOpen = false;
@@ -77,8 +92,16 @@ public class CombatManager : MonoBehaviour
         playerHealthMax = (int)GameManager.GetPlayer().GetMaxHealth();
         balance = GameManager.GetPlayer().getBalance();
 
-        enemyHealth = 20;
-        enemyHealthMax = 20;
+        if(isBoss)
+        {
+            enemyHealth = 100;
+            enemyHealthMax = 100;
+        }
+        else
+        {
+            enemyHealth = 20;
+            enemyHealthMax = 20;
+        }
 
         //give the enemy 3 items
         enemyItemsLeft = 3;
@@ -165,7 +188,7 @@ public class CombatManager : MonoBehaviour
                 if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_WATER)
                 {
                     //Debug.Log("Used a water.");
-                    //inventory.GetItem<Water>(selected).Use(); not working
+                    inventory.GetItem<Water>(selected).Use();
                     updateItemsMenuList();
                     Instantiate(enemyHeartAnim, playerAnimSpawner.position, Quaternion.identity);
                     int healthToRestore = Random.Range(2, 5);
@@ -185,11 +208,17 @@ public class CombatManager : MonoBehaviour
                 else if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_BRASS_KNUCKLES)
                 {
                     // do brass knuckles attack
+                    inventory.GetItem<BrassKnuckles>(selected).Use();
                     canPlayerAttack = false;
                     PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
                     // do attack & animations
 
                     int damage = Random.Range(5, 8);
+                    if (playerAttackWeakened) // if players attack is weakened then we will halve their damage
+                    {
+                        playerAttackWeakened = false;
+                        damage = damage / 2;
+                    }
                     damageGiven += damage;
                     enemyHealth -= damage;
                     //Debug.Log("Enemy Health: " + enemyHealth + "/" + enemyHealthMax);
@@ -206,12 +235,18 @@ public class CombatManager : MonoBehaviour
                 }
                 else if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_GUARD_BATON)
                 {
+                    inventory.GetItem<GuardBaton>(selected).Use();
                     // do Guard Baton attack
                     canPlayerAttack = false;
                     PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
                     // do attack & animations
 
                     int damage = Random.Range(4, 6);
+                    if (playerAttackWeakened) // if players attack is weakened then we will halve their damage
+                    {
+                        playerAttackWeakened = false;
+                        damage = damage / 2;
+                    }
                     damageGiven += damage;
                     enemyHealth -= damage;
                     //Debug.Log("Enemy Health: " + enemyHealth + "/" + enemyHealthMax);
@@ -360,6 +395,11 @@ public class CombatManager : MonoBehaviour
         // do attack & animations
 
         int damage = Random.Range(1, 4);
+        if(playerAttackWeakened) // if players attack is weakened then we will halve their damage
+        {
+            playerAttackWeakened = false;
+            damage = damage / 2;
+        }    
         damageGiven += damage;
         enemyHealth -= damage;
         //Debug.Log("Enemy Health: " + enemyHealth + "/" + enemyHealthMax);
@@ -377,76 +417,86 @@ public class CombatManager : MonoBehaviour
 
     private void doEnemyTurn()
     {
-        // do enemy attack
-        // this will be a lot more complex too as the enemy will be able to do different moves
-        //
-        if(((float)enemyHealth / (float)enemyHealthMax) <= .2 && enemyItemsLeft != 0) // if enemy health is low and we have a healing item, prioritize healing
+    //    private int bossHealthItems = 3;
+    //private int bossAttackitems = 3;
+    //private int bossStrongAttackItems = 2;
+    //private int bossPlayerWeakeningItems = 2;
+    //private bool playerGuardWeakened;
+    //private bool playerAttackWeakened;
+        if(isBoss)
         {
-            //Debug.Log("Enemy health " + ((float)enemyHealth / (float)enemyHealthMax));
-            //Debug.Log("Prioritizing healing");
-            Instantiate(enemyHeartAnim, enemyAnimSpawner.position, Quaternion.identity);
-            // use a health item
-            enemyItemsLeft--;
-            int healAmt = Random.Range(3, enemyHealthMax);
-            enemyHealth += healAmt;
-            if (enemyHealth >= enemyHealthMax)
+            if (enemyHealth < 20 && bossHealthItems > 0)
             {
-                enemyHealth = enemyHealthMax;
+                // heal boss
             }
-        }
-        else if(playerHealth / playerHealthMax <= .2) // if player health is low prioritize attacking
-        {
-            int damage = Random.Range(1, 4);
-            if(playerIsGuarding)
+            else
             {
-                damage = damage / 2;
+                int decisionToMake = Random.Range(1, 200);
+                switch (decisionToMake)
+                {
+                    case > 0 and <= 50:
+                        // attack item
+                        if (bossAttackitems != 0)
+                        {
+                            bossAttackitems--;
+                            // do attack item
+                        }
+                        break;
+                    case > 50 and <= 65:
+                        // weaken player attack
+                        if (bossPlayerWeakeningItems != 0)
+                        {
+                            bossPlayerWeakeningItems--;
+                            playerAttackWeakened = true;
+                        }
+                        break;
+                    case > 65 and <= 80:
+                        // weaken player guard
+                        if (bossPlayerWeakeningItems != 0)
+                        {
+                            bossPlayerWeakeningItems--;
+                            playerGuardWeakened = true;
+                        }
+                        break;
+                    case > 80 and <= 120:
+                        if (bossHealthItems != 0)
+                        {
+                            bossHealthItems--;
+                            //heal
+                        }
+                        break;
+                    case > 120 and <= 140:
+                        // strong attack item
+                        if (bossStrongAttackItems != 0)
+                        {
+                            bossStrongAttackItems--;
+                        }
+                        break;
+                    case > 140 and <= 200:
+                        // regular attack
+                        break;
+                }
             }
-            damageTaken += damage;
-            playerHealth -= damage;
+            
         }
         else
         {
-            // make a random decision
-            int decisionToMake = Random.Range(1, 4);
-
-            if(decisionToMake == 1) //1 = use health item
+            // do enemy attack
+            // this will be a lot more complex too as the enemy will be able to do different moves
+            //
+            if (((float)enemyHealth / (float)enemyHealthMax) <= .2 && enemyItemsLeft != 0) // if enemy health is low and we have a healing item, prioritize healing
             {
-                if(enemyItemsLeft != 0)
+                Instantiate(enemyHeartAnim, enemyAnimSpawner.position, Quaternion.identity);
+                // use a health item
+                enemyItemsLeft--;
+                int healAmt = Random.Range(3, enemyHealthMax);
+                enemyHealth += healAmt;
+                if (enemyHealth >= enemyHealthMax)
                 {
-                    // use a health item
-                    Instantiate(enemyHeartAnim, enemyAnimSpawner.position, Quaternion.identity);
-                    enemyItemsLeft--;
-                    int healAmt = Random.Range(3, enemyHealthMax);
-                    enemyHealth += healAmt;
-                    if (enemyHealth >= enemyHealthMax)
-                    {
-                        enemyHealth = enemyHealthMax;
-                    }
-                }
-                else
-                {
-                    decisionToMake = Random.Range(2, 4);
+                    enemyHealth = enemyHealthMax;
                 }
             }
-            if(decisionToMake == 2) // 2 = use attack item (stronger damage)
-            {
-                if(enemyAttackItemsLeft != 0)
-                {
-                    enemyAttackItemsLeft--;
-                    int damage = Random.Range(4, 9);
-                    if (playerIsGuarding)
-                    {
-                        damage = damage / 2;
-                    }
-                    damageTaken += damage;
-                    playerHealth -= damage;
-                }
-                else
-                {
-                    decisionToMake = 3;
-                }
-            }
-            if(decisionToMake == 3) // 3 = attack
+            else if (playerHealth / playerHealthMax <= .2) // if player health is low prioritize attacking
             {
                 int damage = Random.Range(1, 4);
                 if (playerIsGuarding)
@@ -455,6 +505,59 @@ public class CombatManager : MonoBehaviour
                 }
                 damageTaken += damage;
                 playerHealth -= damage;
+            }
+            else
+            {
+                // make a random decision
+                int decisionToMake = Random.Range(1, 4);
+
+                if (decisionToMake == 1) //1 = use health item
+                {
+                    if (enemyItemsLeft != 0)
+                    {
+                        // use a health item
+                        Instantiate(enemyHeartAnim, enemyAnimSpawner.position, Quaternion.identity);
+                        enemyItemsLeft--;
+                        int healAmt = Random.Range(3, enemyHealthMax);
+                        enemyHealth += healAmt;
+                        if (enemyHealth >= enemyHealthMax)
+                        {
+                            enemyHealth = enemyHealthMax;
+                        }
+                    }
+                    else
+                    {
+                        decisionToMake = Random.Range(2, 4);
+                    }
+                }
+                if (decisionToMake == 2) // 2 = use attack item (stronger damage)
+                {
+                    if (enemyAttackItemsLeft != 0)
+                    {
+                        enemyAttackItemsLeft--;
+                        int damage = Random.Range(4, 9);
+                        if (playerIsGuarding)
+                        {
+                            damage = damage / 2;
+                        }
+                        damageTaken += damage;
+                        playerHealth -= damage;
+                    }
+                    else
+                    {
+                        decisionToMake = 3;
+                    }
+                }
+                if (decisionToMake == 3) // 3 = attack
+                {
+                    int damage = Random.Range(1, 4);
+                    if (playerIsGuarding)
+                    {
+                        damage = damage / 2;
+                    }
+                    damageTaken += damage;
+                    playerHealth -= damage;
+                }
             }
         }
         updateHealthBars();

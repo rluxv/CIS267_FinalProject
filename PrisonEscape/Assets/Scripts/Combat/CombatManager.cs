@@ -76,12 +76,18 @@ public class CombatManager : MonoBehaviour
         inventory = GameManager.GetPlayer().getInventory();
         playerIsGuarding = false;
         //Add some items to the inventory for testing
-        //for (int i = 0; i < 10; i++)
+        //for (int i = 0; i < 6; i++)
         //{
         //    Water it = new Water();
         //    inventory.AddItem(it);
-        //    //Debug.Log(inventory.GetItem(i).name + " Inv");
+        //    Debug.Log(inventory.GetItem(i).name + " Inv");
         //}
+
+
+        //TESTING REMOVE
+        //BrassKnuckles it = new BrassKnuckles();
+        //inventory.AddItem(it);
+
         updateItemsMenuList();
 
 
@@ -137,7 +143,7 @@ public class CombatManager : MonoBehaviour
         {
             try
             {
-                //Debug.Log("Item " + i + " :" + inventory.GetItem(i).name);
+                Debug.Log("Item " + i + " :" + inventory.GetItem<InventoryItem>(i).name);
                 ItemsTMP[i].SetText(inventory.GetItem<InventoryItem>(i).name);
             }
             catch (System.Exception e)
@@ -190,7 +196,9 @@ public class CombatManager : MonoBehaviour
                 {
                     //Debug.Log("Used a water.");
                     //inventory.GetItem<Water>(selected).Use();
-                    updateItemsMenuList();
+                    inventory.RemoveItem(selected, 1);
+                    //Debug.Log(inventory.items);
+                    
                     Instantiate(enemyHeartAnim, playerAnimSpawner.position, Quaternion.identity);
                     int healthToRestore = Random.Range(2, 5);
                     playerHealth += healthToRestore;
@@ -209,7 +217,8 @@ public class CombatManager : MonoBehaviour
                 else if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_BRASS_KNUCKLES)
                 {
                     // do brass knuckles attack
-                    //inventory.GetItem<BrassKnuckles>(selected).Use();
+                    inventory.RemoveItem(selected, 1);
+
                     canPlayerAttack = false;
                     PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
                     // do attack & animations
@@ -237,6 +246,8 @@ public class CombatManager : MonoBehaviour
                 else if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_GUARD_BATON)
                 {
                     //inventory.GetItem<GuardBaton>(selected).Use();
+                    inventory.RemoveItem(selected, 1);
+
                     // do Guard Baton attack
                     canPlayerAttack = false;
                     PlayerActionsMenuAnimator.SetBool("canPlayerAttack", false);
@@ -262,6 +273,7 @@ public class CombatManager : MonoBehaviour
                         Invoke("doEnemyTurn", 3);
                     }
                 }
+                updateItemsMenuList();
                 selected = 0;
                 ItemSelectorTMP.GetComponent<RectTransform>().anchoredPosition = ItemsTMP[selected].GetComponent<RectTransform>().anchoredPosition;
             }
@@ -595,11 +607,32 @@ public class CombatManager : MonoBehaviour
 
     public void endBattle()
     {
+          
         DontDestroyOnLoadObj.SetActive(true);
         GameManager.GetPlayer().SetHealth(playerHealth);
         GameManager.GetPlayer().increaseBalance(coinsEarned);
         GameManager.GetPlayer().setInventory(inventory);
         //We will change this to the scene the player was previously in
+        if (!isBoss)
+        {
+            int random = Random.Range(0, 4);
+            if (random == 3)
+            {
+                GameManager.getKeys().setHasGuardBadge(true);
+            }
+        }
+        else
+        {
+            if(GameManager_v2.PreviousScene == "Level1")
+            {
+                GameManager.getKeys().setLevelTwoKey(true);
+                //inform player they have obtained level key
+            }
+            else if (GameManager_v2.PreviousScene == "Level2")
+            {
+                GameManager.getKeys().setLevelThreeKey(true);
+            }
+        }
         SceneManager.LoadScene(GameManager_v2.PreviousScene);
     }
 

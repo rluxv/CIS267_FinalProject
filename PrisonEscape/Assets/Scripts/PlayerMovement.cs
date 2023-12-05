@@ -124,13 +124,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void sprint()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) )
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetButtonDown("XButton"))
         {
             Debug.Log("Sprinting activated");
             movementSpeed += sprintBoost;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetButtonUp("XButton"))
         {
             movementSpeed -= sprintBoost;
             Debug.Log("Sprinting deactivated");

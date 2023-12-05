@@ -8,6 +8,7 @@ public class LootBedScript : MonoBehaviour
     //  player in range
     private bool canPlayerInteract;
     private GameObject buttonPrompt;
+    private GameObject collectItemAnimationObject;
     private bool isLooted;
     private SpriteRenderer bedSpriteRenderer;
     public Sprite postLootSprite;
@@ -16,6 +17,7 @@ public class LootBedScript : MonoBehaviour
     {
         bedSpriteRenderer = GetComponent<SpriteRenderer>();
         buttonPrompt = transform.GetChild(0).gameObject;
+        collectItemAnimationObject = transform.GetChild(1).gameObject;
         canPlayerInteract = false;
         buttonPrompt.SetActive(false);
         isLooted = false;
@@ -40,12 +42,15 @@ public class LootBedScript : MonoBehaviour
             buttonPrompt.SetActive(false);
             bedSpriteRenderer.sprite = postLootSprite;
 
+
             //  Probably make an object that has every posible item in an array
             //  find it once
             //  draw a weighted random number, and return the respective item here
             //  then pass it where Water() is
 
             GameObject.FindGameObjectsWithTag("ItemLootTable")[0].GetComponent<ItemLootTable>().drawFromLootTable();
+
+            collectItemAnimationObject.GetComponent<CollectItemAnimationControler>().startItemAnimation();
 
             //  all these on each bed is unessesary
             //int i = Random.Range(0, 3);

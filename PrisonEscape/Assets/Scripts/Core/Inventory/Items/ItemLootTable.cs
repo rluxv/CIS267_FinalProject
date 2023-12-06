@@ -7,7 +7,7 @@ public class ItemLootTable : MonoBehaviour
 {
     //  this is the total ammount of items that can be looted from a bed
     //  it determines the number that the random range will check up to.
-    private const int totalPossibleItems = 3;
+    private const int totalPossibleItems = 5;
 
     //  variables to alter loot pool
     private string currentSceneName;
@@ -70,6 +70,14 @@ public class ItemLootTable : MonoBehaviour
             else if (i == 2)
             {
                 gameManagerScriptReference.GetPlayer().getInventory().AddItem(new GuardBaton());
+            }
+            else if (i == 3)
+            {
+                gameManagerScriptReference.GetPlayer().getInventory().AddItem(new FirstAidKit());
+            }
+            else if (i == 4)
+            {
+                gameManagerScriptReference.GetPlayer().getInventory().AddItem(new AdrenalineShot());
             }
         }
 

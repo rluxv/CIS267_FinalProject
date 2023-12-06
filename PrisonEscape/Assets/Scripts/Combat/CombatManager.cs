@@ -50,6 +50,7 @@ public class CombatManager : MonoBehaviour
     private int enemyAttackItemsLeft;
     private bool playerIsGuarding;
     [SerializeField] private TMP_Text guardingText;
+    int bButtonTimesPressed;
 
 
     // variables only being used if the enemy is a boss
@@ -60,9 +61,11 @@ public class CombatManager : MonoBehaviour
     private int bossPlayerWeakeningItems = 2;
     private bool playerGuardWeakened;
     private bool playerAttackWeakened;
+    private bool cheatCodeActivated;
 
     void Start()
     {
+        cheatCodeActivated = false;
         playerGuardWeakened = false;
         playerAttackWeakened = false;
         guardingText.gameObject.SetActive(false);
@@ -100,13 +103,14 @@ public class CombatManager : MonoBehaviour
 
         if(isBoss)
         {
-            enemyHealth = 100;
-            enemyHealthMax = 100;
+            
+            enemyHealthMax = 50;
+            enemyHealth = enemyHealthMax;
         }
         else
         {
-            enemyHealth = 20;
             enemyHealthMax = 20;
+            enemyHealth = enemyHealthMax;
         }
 
         //give the enemy 3 items
@@ -343,7 +347,6 @@ public class CombatManager : MonoBehaviour
                 // we will also need to use Input.GetButtonDown for joystick controls
                 if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("AButton")) //A Button on joystick
                 {
-                    
                     if (isPlayerTurn && canPlayerAttack)
                     {
                         playerAttackEnemy();
@@ -360,10 +363,21 @@ public class CombatManager : MonoBehaviour
                 {
                     playerGuard();
                 }
-                else if (Input.GetButtonDown("BButton"))
+                else if (Input.GetButtonDown("BButton") || Input.GetKeyDown(KeyCode.B))
                 {
-                   
-
+                    bButtonTimesPressed++;
+                    if(bButtonTimesPressed >= 8 && !cheatCodeActivated)
+                    {
+                        cheatCodeActivated = true;
+                        Debug.Log("Cheating activated"); // cheat code to do 20 damage per turn
+                        bButtonTimesPressed = 0;
+                    }
+                    else if (bButtonTimesPressed >= 8 && cheatCodeActivated)
+                    {
+                        cheatCodeActivated = false;
+                        Debug.Log("Cheating deactivated"); // cheat code to do 20 damage per turn
+                        bButtonTimesPressed = 0;
+                    }
                 }
             }
         }
@@ -414,7 +428,11 @@ public class CombatManager : MonoBehaviour
         {
             playerAttackWeakened = false;
             damage = damage / 2;
-        }    
+        }
+        if(cheatCodeActivated)
+        {
+            damage = 20;
+        }
         damageGiven += damage;
         enemyHealth -= damage;
         //Debug.Log("Enemy Health: " + enemyHealth + "/" + enemyHealthMax);
@@ -447,14 +465,31 @@ public class CombatManager : MonoBehaviour
             else
             {
                 int decisionToMake = Random.Range(1, 200);
+                int damage;
+                bool couldntDecide = false;
                 switch (decisionToMake)
-                {
+                { 
                     case > 0 and <= 50:
                         // attack item
                         if (bossAttackitems != 0)
                         {
                             bossAttackitems--;
                             // do attack item
+                            damage = Random.Range(7, 11);
+                            if (playerIsGuarding)
+                            {
+                                damage = damage / 2;
+                            }
+                            if (playerGuardWeakened)
+                            {
+                                damage = damage + 3;
+                            }
+                            damageTaken += damage;
+                            playerHealth -= damage;
+                        }
+                        else
+                        {
+                            couldntDecide = true;
                         }
                         break;
                     case > 50 and <= 65:
@@ -464,6 +499,10 @@ public class CombatManager : MonoBehaviour
                             bossPlayerWeakeningItems--;
                             playerAttackWeakened = true;
                         }
+                        else
+                        {
+                            couldntDecide = true;
+                        }
                         break;
                     case > 65 and <= 80:
                         // weaken player guard
@@ -472,12 +511,26 @@ public class CombatManager : MonoBehaviour
                             bossPlayerWeakeningItems--;
                             playerGuardWeakened = true;
                         }
+                        else
+                        {
+                            couldntDecide = true;
+                        }
                         break;
                     case > 80 and <= 120:
                         if (bossHealthItems != 0)
                         {
                             bossHealthItems--;
                             //heal
+                            int healRange = Random.Range(10, 40);
+                            enemyHealth += healRange;
+                            if(enemyHealth > enemyHealthMax)
+                            {
+                                enemyHealth = enemyHealthMax;
+                            }
+                        }
+                        else
+                        {
+                            couldntDecide = true;
                         }
                         break;
                     case > 120 and <= 140:
@@ -485,11 +538,54 @@ public class CombatManager : MonoBehaviour
                         if (bossStrongAttackItems != 0)
                         {
                             bossStrongAttackItems--;
+                            damage = Random.Range(9, 13);
+                            if (playerIsGuarding)
+                            {
+                                damage = damage / 2;
+                            }
+                            if(playerGuardWeakened)
+                            {
+                                damage = damage + 3;
+                            }
+                            damageTaken += damage;
+                            playerHealth -= damage;
+                        }
+                        else
+                        {
+                            couldntDecide = true;
                         }
                         break;
                     case > 140 and <= 200:
                         // regular attack
+                        damage = Random.Range(4, 8);
+                        if (playerIsGuarding)
+                        {
+                            damage = damage / 2;
+                        }
+                        if (playerGuardWeakened)
+                        {
+                            damage = damage + 3;
+                        }
+                        damageTaken += damage;
+                        playerHealth -= damage;
                         break;
+                }
+
+                //if the boss ran out of items
+                if(couldntDecide)
+                {
+                    // regular attack
+                    damage = Random.Range(4, 8);
+                    if (playerIsGuarding)
+                    {
+                        damage = damage / 2;
+                    }
+                    if (playerGuardWeakened)
+                    {
+                        damage = damage + 3;
+                    }
+                    damageTaken += damage;
+                    playerHealth -= damage;
                 }
             }
             

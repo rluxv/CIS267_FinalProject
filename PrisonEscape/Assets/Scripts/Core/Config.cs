@@ -20,4 +20,6 @@ public static class Config
     public const string ITEM_WATER = "ITEM.CONSUMABLE.WATER";
     public const string ITEM_BRASS_KNUCKLES = "ITEM.WEAPON.BRASSKNUCKLES";
     public const string ITEM_GUARD_BATON = "ITEM.WEAPON.GUARDBATON";
+    public const string ITEM_FIRST_AID_KIT = "ITEM.CONSUMABLE.FIRSTAIDKIT";
+    public const string ITEM_ADRENALINE_SHOT = "ITEM.CONSUMABLE.ADRENALINESHOT";
 }

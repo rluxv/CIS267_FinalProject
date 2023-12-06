@@ -280,6 +280,35 @@ public class CombatManager : MonoBehaviour
                         Invoke("doEnemyTurn", 3);
                     }
                 }
+                else if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_FIRST_AID_KIT)
+                {
+                    inventory.RemoveItem(selected, 1);
+                    playerHealth = playerHealthMax;
+                    updateHealthBars();
+                    isPlayerTurn = false;
+                    ItemsMenuAnimator.SetTrigger("FadeOut");
+                    Invoke("hideItemsMenu", (float)0.4);
+                    //Add a delay to make it seem like the enemy is "thinking"
+                    if (!isEnemyDead())
+                    {
+                        Invoke("doEnemyTurn", 3);
+                    }
+                }
+                else if (inventory.GetItem<InventoryItem>(selected).itemId == Config.ITEM_ADRENALINE_SHOT)
+                {
+                    inventory.RemoveItem(selected, 1);
+                    playerHealthMax = 40;
+                    playerHealth = playerHealthMax;
+                    updateHealthBars();
+                    isPlayerTurn = false;
+                    ItemsMenuAnimator.SetTrigger("FadeOut");
+                    Invoke("hideItemsMenu", (float)0.4);
+                    //Add a delay to make it seem like the enemy is "thinking"
+                    if (!isEnemyDead())
+                    {
+                        Invoke("doEnemyTurn", 3);
+                    }
+                }
                 updateItemsMenuList();
                 selected = 0;
                 ItemSelectorTMP.GetComponent<RectTransform>().anchoredPosition = ItemsTMP[selected].GetComponent<RectTransform>().anchoredPosition;
@@ -724,6 +753,10 @@ public class CombatManager : MonoBehaviour
           
         DontDestroyOnLoadObj.SetActive(true);
         GameManager.GetPlayer().SetHealth(playerHealth);
+        if(playerHealth > 20) // adrenaline shot only lasts 1 battle
+        {
+            GameManager.GetPlayer().SetHealth(20);
+        }
         GameManager.GetPlayer().increaseBalance(coinsEarned);
         GameManager.GetPlayer().setInventory(inventory);
         //We will change this to the scene the player was previously in

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GuardMovement : MonoBehaviour
 {
 
-   
+ 
     private Vector2 player;
     private bool active;
     public float MovementSpeed;
@@ -14,6 +14,8 @@ public class GuardMovement : MonoBehaviour
     private int pathLength;
     private int pathPos;
     private bool Switch;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,8 @@ public class GuardMovement : MonoBehaviour
         pathLength = path.Length;
         transform.position = Vector2.MoveTowards(transform.position, path[pathPos].transform.position, MovementSpeed * Time.deltaTime);
        
+
+
         if (guard == pathV && !Switch)
         {
             pathPos++;

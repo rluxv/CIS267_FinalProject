@@ -6,20 +6,29 @@ public class RandomHairColor : MonoBehaviour
 {
     // Start is called before the first frame update
     private SpriteRenderer hair;
-    private readonly Color[] colors;
-    private List<Color> colorList;
+    private Color[] colors;
     private int pos; 
     void Start()
     {
         hair = GetComponent<SpriteRenderer>();
-        colorList[8] = Color.white + Color.blue + Color.green + Color.cyan + Color.gray + Color.magenta + Color.red + Color.yellow;
-        pos = 1;
+        colors = new Color[8]  ;
+        colors[0] = Color.white;
+        colors[1] = Color.blue;
+        colors[2] = Color.green;
+        colors[3] = Color.cyan;
+        colors[4] = Color.gray;
+        colors[5] = Color.magenta;
+        colors[6] = Color.red;
+        colors[7] = Color.yellow;
+        
+           
+        pos = Random.Range(0,8);
     }
 
     // Update is called once per frame
     void Update()
     {
-        pos = 2;
-        hair.color = colorList[pos];
+       
+        hair.color = colors[pos];
     }
 }

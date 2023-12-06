@@ -32,12 +32,14 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject CombatEndMenu;
     [SerializeField] private TMP_Text[] ItemsTMP;
     [SerializeField] private TMP_Text ItemSelectorTMP;
+    [SerializeField] private GameObject gameOverMenu;
     private Animator PlayerActionsMenuAnimator;
     private Animator ItemsMenuAnimator;
     private GameManager_v2 GameManager;
     private GameObject GameManagerObj;
     private GameObject DontDestroyOnLoadObj;
     private bool combatEndMenuOpen;
+    private bool gameOverMenuOpen;
     private int balance;
     private int coinsEarned;
     private int damageTaken;
@@ -68,6 +70,7 @@ public class CombatManager : MonoBehaviour
         cheatCodeActivated = false;
         playerGuardWeakened = false;
         playerAttackWeakened = false;
+        gameOverMenuOpen = false;
         guardingText.gameObject.SetActive(false);
         ctrlrHold = false;
         combatEndMenuOpen = false;
@@ -340,6 +343,21 @@ public class CombatManager : MonoBehaviour
                 if (Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Return))
                 {
                     endBattle();
+                }
+            }
+            else if (gameOverMenuOpen)
+            {
+                if (Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Return))
+                {
+                    Destroy(DontDestroyOnLoadObj);
+                    SceneManager.LoadScene("MainMenu");
+                    
+                }
+                if (Input.GetButtonDown("XButton") || Input.GetKeyDown(KeyCode.X))
+                {
+                    Destroy(DontDestroyOnLoadObj);
+                    SceneManager.LoadScene("CreditsMenu");
+                    
                 }
             }
             else
@@ -771,6 +789,8 @@ public class CombatManager : MonoBehaviour
         {
             //Debug.Log("Player Defeated");
             playerHealth = 0;
+            gameOverMenuOpen = true;
+            gameOverMenu.SetActive(true);
             updateHealthBars();
             return true;
         }

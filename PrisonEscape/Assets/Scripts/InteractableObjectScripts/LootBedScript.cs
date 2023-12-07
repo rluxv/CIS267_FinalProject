@@ -12,6 +12,8 @@ public class LootBedScript : MonoBehaviour
     private bool isLooted;
     private SpriteRenderer bedSpriteRenderer;
     public Sprite postLootSprite;
+    private string itemReturnedSpriteName;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,9 +50,9 @@ public class LootBedScript : MonoBehaviour
             //  draw a weighted random number, and return the respective item here
             //  then pass it where Water() is
 
-            GameObject.FindGameObjectsWithTag("ItemLootTable")[0].GetComponent<ItemLootTable>().drawFromLootTable();
+            itemReturnedSpriteName = GameObject.FindGameObjectsWithTag("ItemLootTable")[0].GetComponent<ItemLootTable>().drawFromLootTable();
 
-            collectItemAnimationObject.GetComponent<CollectItemAnimationControler>().startItemAnimation();
+            collectItemAnimationObject.GetComponent<CollectItemAnimationControler>().startItemAnimation(itemReturnedSpriteName);
 
             //  all these on each bed is unessesary
             //int i = Random.Range(0, 3);

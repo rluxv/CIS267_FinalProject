@@ -228,6 +228,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combShivSprite: {fileID: 21300000, guid: 6ece9a5e7e3fbef488b9aa66cd25c12a, type: 3}
   brassKnucklesSprite: {fileID: 21300000, guid: 2296da771fd3b944e81c7dfe91f236bc, type: 3}
+  guardBatonSprite: {fileID: 21300000, guid: 575e165ded3dfd942941b182594ef89c, type: 3}
+  firstAidKitSprite: {fileID: 21300000, guid: 27de4b9de71a89c41bd0578737d5a345, type: 3}
+  adrenalineShotSprite: {fileID: 21300000, guid: a1619ed5761d68a4d9cb20250386a640, type: 3}
+  waterSprite: {fileID: 21300000, guid: 2bfb0e350d3c154488ea9b79deee5119, type: 3}
+  currencySprite: {fileID: 21300000, guid: c3bfb181672f5e244b5de5980c2445ed, type: 3}
 --- !u!1 &3418009097274053990
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,21 +65,21 @@ public class GuardAnimate : MonoBehaviour
     private void getDirection()
     {
         Vector3 currentDirection = (transform.position - previousPosition).normalized;
-        Debug.Log(currentDirection);
+        //Debug.Log(currentDirection);
         previousPosition = transform.position;
 
         //Direction checking--------------
         if (currentDirection.x > .9) 
         {
             right = true;
-            Debug.Log("Right" + right);
+            //Debug.Log("Right" + right);
         }
         else {right = false;}
         //--------------------------------
         if (currentDirection.x < -.9)
         {
             left = true;
-            Debug.Log("left" + left);
+            //Debug.Log("left" + left);
         }
         else
         {   left = false;}
@@ -87,14 +87,14 @@ public class GuardAnimate : MonoBehaviour
         if (currentDirection.y > .9)
         {
             up = true;
-            Debug.Log("up" + up);
+            //Debug.Log("up" + up);
         }
         else { up = false; }
         //-------------------------------
         if (currentDirection.y < -.9)
         {
             down = true;
-            Debug.Log("down" + down);
+            //Debug.Log("down" + down);
         }
         else { down = false; }
     }

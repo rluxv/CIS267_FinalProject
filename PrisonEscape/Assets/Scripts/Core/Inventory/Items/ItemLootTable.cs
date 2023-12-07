@@ -7,11 +7,12 @@ public class ItemLootTable : MonoBehaviour
 {
     //  this is the total ammount of items that can be looted from a bed
     //  it determines the number that the random range will check up to.
-    private const int totalPossibleItems = 5;
+    private const int totalPossibleItems = 6;
 
     //  variables to alter loot pool
     private string currentSceneName;
     private string conditions;
+    private string itemReturned;
 
     private GameManager_v2 gameManagerScriptReference;
 
@@ -42,10 +43,10 @@ public class ItemLootTable : MonoBehaviour
     }
 
 
-    public void drawFromLootTable()
+    public string drawFromLootTable()
     {
 
-
+        itemReturned = "";
 
         //  conditions will simply be extra checks
         //  for example -> conditions = "level3" thus the loot pool for each level can vary, better loot on level 3 than level 1
@@ -58,31 +59,44 @@ public class ItemLootTable : MonoBehaviour
         }
         else
         {
-            int i = Random.Range(0, totalPossibleItems);
+            int i = Random.Range(0, totalPossibleItems + 6);
+            Debug.Log("Range = " + i);
             if (i == 0)
             {
                 gameManagerScriptReference.GetPlayer().getInventory().AddItem(new Water());
+                itemReturned = "water";
             }
             else if (i == 1)
             {
                 gameManagerScriptReference.GetPlayer().getInventory().AddItem(new BrassKnuckles());
+                itemReturned = "brassKnuckles";
             }
             else if (i == 2)
             {
                 gameManagerScriptReference.GetPlayer().getInventory().AddItem(new GuardBaton());
+                itemReturned = "guardBaton";
             }
             else if (i == 3)
             {
                 gameManagerScriptReference.GetPlayer().getInventory().AddItem(new FirstAidKit());
+                itemReturned = "firstAidKit";
             }
             else if (i == 4)
             {
                 gameManagerScriptReference.GetPlayer().getInventory().AddItem(new AdrenalineShot());
+                itemReturned = "adrenalineShot";
             }
+            else if (i >= 5)
+            {
+                gameManagerScriptReference.GetPlayer().increaseBalance(Random.Range(1,3));
+                itemReturned = "currency";
+            }
+
+           
         }
 
         
-
+       return itemReturned;
 
 
     }

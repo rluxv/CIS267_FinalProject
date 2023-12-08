@@ -18,6 +18,7 @@ public class InmateMovement : MonoBehaviour
     private NavMeshPath path;
     int pathIndex;
     bool shouldSwitch;
+    NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,10 @@ public class InmateMovement : MonoBehaviour
         GameObject pathingObjectContainer = GameObject.FindWithTag("PATH_OBJECTS_CONTAINER");
         isPathing = false;
         path = new NavMeshPath();
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
 
 
         for (int i = 0; i < pathingObjectContainer.transform.childCount; i++)
@@ -47,33 +52,10 @@ public class InmateMovement : MonoBehaviour
 
     private void performPathChange()
     {
-        Vector3 guard = transform.position;
-        Vector3 pathV = pathFindingPositions[pathIndex];
 
 
-        int pathLength = pathFindingPositions.Count;
-        NavMesh.CalculatePath(transform.position, pathFindingPositions[pathIndex], NavMesh.AllAreas, path);
-        //NavMeshAgent.SetPath(path);
 
-        if (guard == pathV && !shouldSwitch)
-        {
-            pathIndex++;
-        }
-        if (pathLength == pathIndex)
-        {
-            pathIndex--;
-            shouldSwitch = true;
-        }
-        if (guard == pathV && shouldSwitch && pathIndex != 0)
-        {
-            pathIndex--;
-        }
-        if (pathIndex == 0)
-        {
-
-            shouldSwitch = false;
-        }
-
+        agent.SetDestination(GameObject.FindGameObjectWithTag("Player").gameObject.transform.position);
 
 
     }

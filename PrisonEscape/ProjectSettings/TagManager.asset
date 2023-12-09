@@ -16,6 +16,7 @@ TagManager:
   - ItemLootTable
   - PATH_OBJECTS_CONTAINER
   - PATH_OBJECT
+  - INMATE
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Guard
+  - Inmate
   - 
   - 
   - 

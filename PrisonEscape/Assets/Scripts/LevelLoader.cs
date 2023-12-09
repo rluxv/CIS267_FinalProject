@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+   public  GameObject inmatePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,7 @@ public class LevelLoader : MonoBehaviour
             {
                 if (!keys.hasLevelOneKey) return;
                 switchScenes("Level1");
+                generateInmate();
             }
 
             if (transform.gameObject.tag.Equals("Level2Loader"))
@@ -53,5 +56,14 @@ public class LevelLoader : MonoBehaviour
 
         //load the scene
         SceneManager.LoadScene(levelName);
+    }
+
+    public void generateInmate()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject inmate = Instantiate(inmatePrefab);
+            inmate.transform.position = transform.position;
+        }
     }
 }

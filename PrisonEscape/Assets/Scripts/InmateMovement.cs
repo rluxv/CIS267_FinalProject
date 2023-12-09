@@ -13,6 +13,7 @@ using Vector3 = UnityEngine.Vector3;
 public class InmateMovement : MonoBehaviour
 {
     private List<Vector3> pathFindingPositions;
+    Vector3 finalPathPosition;
     public float movementSpeed;
     private bool isPathing;
     private NavMeshPath path;
@@ -26,10 +27,12 @@ public class InmateMovement : MonoBehaviour
         pathFindingPositions = new List<Vector3>();
         GameObject pathingObjectContainer = GameObject.FindWithTag("PATH_OBJECTS_CONTAINER");
         isPathing = false;
-        path = new NavMeshPath();
+
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        agent.autoRepath = true;
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance;
 
 
 
@@ -47,16 +50,21 @@ public class InmateMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        performPathChange();
+       
+
+        if (agent.hasPath == false) 
+        {
+            performPathChange();
+        }
+    
     }
 
     private void performPathChange()
     {
-
-
-
-        agent.SetDestination(GameObject.FindGameObjectWithTag("Player").gameObject.transform.position);
-
+        int randomIndex = UnityEngine.Random.Range(0, pathFindingPositions.Count);
+        agent.SetDestination(pathFindingPositions[randomIndex]);
+        isPathing = true;
+        finalPathPosition = pathFindingPositions[randomIndex];
 
     }
 

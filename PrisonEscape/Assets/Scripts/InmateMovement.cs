@@ -9,6 +9,7 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.AI;
 using Vector3 = UnityEngine.Vector3;
+using UnityEngine.SceneManagement;
 
 public class InmateMovement : MonoBehaviour
 {
@@ -68,7 +69,14 @@ public class InmateMovement : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+            SceneManager.LoadScene("CombatScene");
+            GameManager_v2.PreviousScene = this.gameObject.scene.name;
+            Destroy(this.gameObject);
+        }
     }
 }

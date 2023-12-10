@@ -7,13 +7,16 @@ public class PlayerTrail : MonoBehaviour
     public GameObject trail;
     GameObject spawnedObject;
     private Vector2[] objectPositions;
+    private List<Vector2> objectPositionsList;
     public float timer;
     private float maxTime;
     private int pos;
     // Start is called before the first frame update
     void Start()
     {
+        objectPositionsList = new List<Vector2>();
         maxTime = timer;
+        PlaceTrail();
         pos =0;
     }
 
@@ -48,6 +51,11 @@ public class PlayerTrail : MonoBehaviour
 
     public Vector2 getTrailPos()
     {
-        return spawnedObject.transform.position;
+        if (spawnedObject != null)
+        {
+            return spawnedObject.transform.position;
+        }
+        else { return PlayerPos.getPlayerPos(); }
+
     }
 }

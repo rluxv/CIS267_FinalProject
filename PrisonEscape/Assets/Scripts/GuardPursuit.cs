@@ -8,13 +8,15 @@ public class GuardPursuit : MonoBehaviour
     public GameObject player;
     private PlayerTrail trail;
     private Vector2 Target;
-    private Vector2[] test;
+    private List<Vector2> objectPositionsList;
     private int pos;
+    private bool isTarget;
     void Start()
     {
         trail = player.GetComponent<PlayerTrail>();
-        test = new Vector2[10];
+        objectPositionsList = new List<Vector2>();
         pos = 0;
+        isTarget = false;
     }
 
     // Update is called once per frame
@@ -22,21 +24,35 @@ public class GuardPursuit : MonoBehaviour
     {
         logTrailPositions();
         pursuit();
+        Debug.Log(isTarget);
     }
+
 
     private void pursuit()
     {
-        transform.position = Vector2.MoveTowards(transform.position, Target, 3 * Time.deltaTime);
+        if (isTarget)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, Target, 3 * Time.deltaTime);
+        }
     }
 
     private void logTrailPositions()
     {
-        if(trail.getTrailPos() != null )
+        
+        
+        
+        if (trail.getTrailPos() == null)
         {
-            Target = trail.getTrailPos();
-            
-            Debug.Log(trail.getTrailPos());
+            isTarget = false;
         }
+        else 
+        {
+            isTarget = true;
+            Target = trail.getTrailPos();
+        }
+            
+        Debug.Log(trail.getTrailPos());
+     
        
     }
 
@@ -47,6 +63,7 @@ public class GuardPursuit : MonoBehaviour
         {
             Debug.Log("Collision");
             Destroy(collision.gameObject);
+            
         }
     }
 

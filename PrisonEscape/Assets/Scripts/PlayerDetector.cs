@@ -58,7 +58,7 @@ public class PlayerDetector : MonoBehaviour
             inRange = true;
             
             
-            //SceneManager.LoadScene("CombatScene");
+            
         }
         
     }

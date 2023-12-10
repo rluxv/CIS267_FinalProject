@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         PlayerPos.CanMove(true);
+        PlayerPos.setPlayerPosX(transform.position.x);
+        PlayerPos.setPlayerPosY(transform.position.y);
+        PlayerPos.setPlayerPos(transform.position);
     }
 
     // Update is called once per frame

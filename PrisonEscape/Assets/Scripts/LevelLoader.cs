@@ -47,6 +47,11 @@ public class LevelLoader : MonoBehaviour
             {
                 switchScenes("CombatScene");
             }
+
+            if(transform.gameObject.tag.Equals("GameEndLoader"))
+            {
+                switchScenes("GameEndMenu");
+            }
         }
     }
 

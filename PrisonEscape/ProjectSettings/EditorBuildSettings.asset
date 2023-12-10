@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossCombatScene.unity
     guid: f5b1b36204bdb264d96adf01afad93a7
+  - enabled: 1
+    path: Assets/Scenes/GameEndMenu.unity
+    guid: c6cb55125f1e7ae43b349b74e5db0c99
   m_configObjects: {}

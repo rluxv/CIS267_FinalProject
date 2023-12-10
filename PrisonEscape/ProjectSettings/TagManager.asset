@@ -17,6 +17,7 @@ TagManager:
   - PATH_OBJECTS_CONTAINER
   - PATH_OBJECT
   - INMATE
+  - GameEndLoader
   layers:
   - Default
   - TransparentFX

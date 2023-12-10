@@ -320,10 +320,12 @@ MonoBehaviour:
     Button Icons from Wikimedia Commons
 
     2D-Basic-Room-Assets
-    by PixelChad'
+    by PixelChad
+
+    Font: EPSON True Regular Script Medium'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2044d2f90355ffc4da269fc88aa5620b, type: 2}
+  m_sharedMaterial: {fileID: 3752618571563975665, guid: 2044d2f90355ffc4da269fc88aa5620b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -458,8 +460,8 @@ MonoBehaviour:
 
     CREDITS'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2044d2f90355ffc4da269fc88aa5620b, type: 2}
+  m_sharedMaterial: {fileID: 3752618571563975665, guid: 2044d2f90355ffc4da269fc88aa5620b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -752,8 +754,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press the (B) Button/key to return to the main menu.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2044d2f90355ffc4da269fc88aa5620b, type: 2}
+  m_sharedMaterial: {fileID: 3752618571563975665, guid: 2044d2f90355ffc4da269fc88aa5620b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -886,8 +888,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Prison Escape
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2044d2f90355ffc4da269fc88aa5620b, type: 2}
+  m_sharedMaterial: {fileID: 3752618571563975665, guid: 2044d2f90355ffc4da269fc88aa5620b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

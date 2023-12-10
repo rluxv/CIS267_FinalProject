@@ -24,7 +24,7 @@ public class GuardPursuit : MonoBehaviour
     {
         logTrailPositions();
         pursuit();
-        Debug.Log(isTarget);
+        
     }
 
 
@@ -51,7 +51,7 @@ public class GuardPursuit : MonoBehaviour
             Target = trail.getTrailPos();
         }
             
-        Debug.Log(trail.getTrailPos());
+       
      
        
     }

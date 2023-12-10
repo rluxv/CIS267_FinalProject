@@ -8,13 +8,12 @@ public class GuardPursuit : MonoBehaviour
     public GameObject player;
     private PlayerTrail trail;
     private Vector2 Target;
-    private List<Vector2> objectPositionsList;
     private int pos;
     private bool isTarget;
     void Start()
     {
         trail = player.GetComponent<PlayerTrail>();
-        objectPositionsList = new List<Vector2>();
+      
         pos = 0;
         isTarget = false;
     }

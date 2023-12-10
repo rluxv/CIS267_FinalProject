@@ -6,6 +6,7 @@ public class GuardAnimate : MonoBehaviour
 {
     private Animator animator;
     private Vector3 previousPosition;
+    Vector3 currentDirection;
     private bool up, down, left, right;
     // Start is called before the first frame update
     void Start()
@@ -64,19 +65,19 @@ public class GuardAnimate : MonoBehaviour
 
     private void getDirection()
     {
-        Vector3 currentDirection = (transform.position - previousPosition).normalized;
+        currentDirection = (transform.position - previousPosition).normalized;
         //Debug.Log(currentDirection);
         previousPosition = transform.position;
 
         //Direction checking--------------
-        if (currentDirection.x > .9) 
+        if (currentDirection.x > .7) 
         {
             right = true;
             //Debug.Log("Right" + right);
         }
         else {right = false;}
         //--------------------------------
-        if (currentDirection.x < -.9)
+        if (currentDirection.x < -.7)
         {
             left = true;
             //Debug.Log("left" + left);
@@ -84,18 +85,24 @@ public class GuardAnimate : MonoBehaviour
         else
         {   left = false;}
         //------------------------------
-        if (currentDirection.y > .9)
+        if (currentDirection.y > .7)
         {
             up = true;
             //Debug.Log("up" + up);
         }
         else { up = false; }
         //-------------------------------
-        if (currentDirection.y < -.9)
+        if (currentDirection.y < -.7)
         {
             down = true;
             //Debug.Log("down" + down);
         }
         else { down = false; }
+    }
+
+    public Vector3 getCurrentDirection()
+    {
+
+        return currentDirection;
     }
 }

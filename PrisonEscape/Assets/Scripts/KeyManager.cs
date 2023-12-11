@@ -14,7 +14,7 @@ public class KeyManager
     public KeyManager() 
     { 
         hasLevelOneKey = true;
-        hasLevelTwoKey = true;
+        hasLevelTwoKey = false;
         hasLevelThreeKey = false;
         hasGuardbadge = false;
     }

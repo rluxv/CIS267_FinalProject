@@ -109,15 +109,19 @@ public class PauseMenu : MonoBehaviour
                     GameManagerObj.SetActive(false);
 
                 }
+                else if(selected == 3)
+                {
+                    Application.Quit();
+                }
             }
             else if (Input.GetKeyDown(KeyCode.S) || (ctrlPress && Input.GetAxis("Vertical") == -1))
             {
-                if (selected < 2)
+                if (selected < 3)
                 {
                     selected++;
                     SelectorText.GetComponent<RectTransform>().anchoredPosition = OptionsText[selected].GetComponent<RectTransform>().anchoredPosition;
                 }
-                else if (selected == 2)
+                else if (selected == 3)
                 {
                     selected = 0;
                     SelectorText.GetComponent<RectTransform>().anchoredPosition = OptionsText[selected].GetComponent<RectTransform>().anchoredPosition;
@@ -133,7 +137,7 @@ public class PauseMenu : MonoBehaviour
                 }
                 else if (selected == 0)
                 {
-                    selected = 2;
+                    selected = 3;
                     SelectorText.GetComponent<RectTransform>().anchoredPosition = OptionsText[selected].GetComponent<RectTransform>().anchoredPosition;
                 }
             }

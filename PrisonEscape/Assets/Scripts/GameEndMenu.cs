@@ -14,15 +14,15 @@ public class GameEndMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("BButton") || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.B))
+        if(Input.GetButtonDown("BButton") || Input.GetKeyDown(KeyCode.B))
         {
             SceneManager.LoadScene("MainMenu");
         }
-        if (Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.B))
+        if (Input.GetButtonDown("AButton") || Input.GetKeyDown(KeyCode.A))
         {
             SceneManager.LoadScene("CreditsMenu");
         }
-        if (Input.GetButtonDown("XButton") || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.B))
+        if (Input.GetButtonDown("XButton") || Input.GetKeyDown(KeyCode.X))
         {
             Application.Quit();
         }

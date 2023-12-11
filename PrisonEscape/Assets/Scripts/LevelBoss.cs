@@ -30,7 +30,12 @@ public class LevelBoss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene("BossCombatScene");
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Ran into boss");
+            SceneManager.LoadScene("BossCombatScene");
+        }
+        
     }
 
 }

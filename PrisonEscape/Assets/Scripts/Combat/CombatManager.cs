@@ -478,7 +478,7 @@ public class CombatManager : MonoBehaviour
         }
         if(cheatCodeActivated)
         {
-            damage = 20;
+            damage = 40;
         }
         damageGiven += damage;
         enemyHealth -= damage;
